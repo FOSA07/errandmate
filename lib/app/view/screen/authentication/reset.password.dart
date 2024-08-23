@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../utils/constant/app.colors/app.colors.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
@@ -15,7 +14,6 @@ class ResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.transparent,
         title: const Text('Forget Password'),
         centerTitle: true,
       ),

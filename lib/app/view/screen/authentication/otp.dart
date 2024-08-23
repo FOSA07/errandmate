@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/constant/app.colors/app.colors.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 
@@ -11,7 +10,6 @@ class OTP extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.transparent,
         title: const Text('Forget Password'),
         centerTitle: true,
       ),
