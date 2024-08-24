@@ -36,47 +36,50 @@ class AppTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
-      onChanged: onChanged,
-      maxLength: maxLength,
-      enabled: enabled,
-      textInputAction: textInputAction,
-      focusNode: focusNode,
-      decoration: InputDecoration(
-        labelText: labelText,
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        labelStyle: TextStyle(
-          color: AppColors.white4
-        ),
-        border: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.white2
-          )
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.white3
-          )
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.white3
-          )
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.progress
-          )
+    return SizedBox(
+      // height: 55,
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        validator: validator,
+        onChanged: onChanged,
+        maxLength: maxLength,
+        enabled: enabled,
+        textInputAction: textInputAction,
+        focusNode: focusNode,
+        decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          labelStyle: Theme.of(context).textTheme.bodySmall,
+          isDense: true,
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(
+              color: AppColors.grey2
+            )
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(
+              color: AppColors.white3
+            )
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(
+              color: AppColors.white3
+            )
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(
+              color: AppColors.progress
+            )
+          ),
         ),
       ),
     );

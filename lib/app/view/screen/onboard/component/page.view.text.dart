@@ -23,17 +23,16 @@ class PageViewText extends StatelessWidget {
             pageNumber == 1 ? OnBoardText.header1 :
             pageNumber == 2 ? OnBoardText.header2 :
             OnBoardText.header3,
-            style: const TextStyle(
-              fontWeight: FontWeight.w900,
-              color: Colors.white
-            ),
+            style: Theme.of(context).textTheme.titleLarge
           ),
+          const SizedBox(height: 15,),
           Text(
             pageNumber == 1 ? OnBoardText.body1 :
             pageNumber == 2 ? OnBoardText.body2 :
             OnBoardText.body3,
             style: const TextStyle(
-              color: Colors.white
+              color: Colors.white,
+              fontSize: 20
             ),
           ),
         ],

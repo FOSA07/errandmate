@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
+import 'component/otp.row.dart';
 
 class OTP extends StatelessWidget {
   const OTP({super.key});
@@ -10,24 +11,32 @@ class OTP extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forget Password'),
+        title: Text(
+          'Forget Password',
+          style: Theme.of(context).textTheme.titleSmall  
+        ),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            const Expanded(
+            Expanded(
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
                   children: [
-                    AuthTextHeader(
+                    const AuthTextHeader(
                       text: 'OTP Verification',
                     ),
-                    SizedBox(height: 15,),
-                    Text('A verification code has been sent to ...'),
-                    SizedBox(height: 25,),
+                    const SizedBox(height: 15,),
+                    const Text('A verification code has been sent to ...'),
+                    const SizedBox(height: 25,),
+                    OTPRow(
+                      onCompleted: (otp) {
+                        // print('OTP Entered: $otp');
+                      },
+                    ),
                   ],
                 ),
               ),

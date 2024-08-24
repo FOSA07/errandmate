@@ -17,7 +17,10 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(
+          'Login',
+          style: Theme.of(context).textTheme.titleSmall
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -30,22 +33,21 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: [
                     const AuthTextHeader(
-                      text: 'Login to your\nBillpoint account',
+                      text: 'Login to your account',
                     ),
                     const SizedBox(height: 15,),
                     RichText(
                       
                       text: TextSpan(
                         text: "Don't have an account? ",
-                        style: TextStyle(
-                          color: AppColors.black
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                         children: [
                           TextSpan(
                             text: 'Create account',
                             style: TextStyle(
                               color: AppColors.grey1,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12
                             ),
                             recognizer: TapGestureRecognizer()..onTap = () => context.push('/auth/create-account'),
                           )
@@ -70,15 +72,14 @@ class Login extends StatelessWidget {
                       
                       text: TextSpan(
                         text: "Forgot password? ",
-                        style: TextStyle(
-                          color: AppColors.black
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                         children: [
                           TextSpan(
                             text: 'Reset',
                             style: TextStyle(
                               color: AppColors.grey1,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12
                             ),
                             recognizer: TapGestureRecognizer()..onTap = () => context.go('/auth/reset-password'),
                           )

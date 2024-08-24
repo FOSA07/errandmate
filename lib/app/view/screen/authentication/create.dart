@@ -21,7 +21,10 @@ class CreateAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: Text(
+          'Create Account',
+          style: Theme.of(context).textTheme.titleSmall
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -35,27 +38,33 @@ class CreateAccount extends StatelessWidget {
                   width: double.infinity,
                   child: Column(
                     children: [
-                      const AuthTextHeader(
-                        text: 'Experience a new vibe\nof bill payments.',
-                      ),
-                      const SizedBox(height: 15,),
-                      RichText(
-                        
-                        text: TextSpan(
-                          text: "Already have an account? ",
-                          style: TextStyle(
-                            color: AppColors.black
-                          ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.7,
+                        child: Column(
                           children: [
-                            TextSpan(
-                              text: 'Login',
-                              style: TextStyle(
-                                color: AppColors.grey1,
-                                fontWeight: FontWeight.bold
+                            const AuthTextHeader(
+                              text: 'Experience a new vibe of running errands.',
+                            ),
+                            const SizedBox(height: 15,),
+                            RichText(
+                              
+                              text: TextSpan(
+                                text: "Already have an account? ",
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                children: [
+                                  TextSpan(
+                                    text: 'Login',
+                                    style: TextStyle(
+                                      color: AppColors.grey1,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12
+                                    ),
+                                    recognizer: TapGestureRecognizer()..onTap = () => context.go('/auth'),
+                                  )
+                                ]
                               ),
-                              recognizer: TapGestureRecognizer()..onTap = () => context.go('/auth'),
-                            )
-                          ]
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 25,),
@@ -95,7 +104,9 @@ class CreateAccount extends StatelessWidget {
                         suffixIcon: Icon(Icons.remove_red_eye, color: AppColors.grey1,),
                       ),
                       const SizedBox(height: 30,),
-                      const Text('''By proceeding, you agree to our Terms of Service and Privacy Policy'''),
+                      Text('''By proceeding, you agree to our Terms of Service and Privacy Policy''',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                       const SizedBox(height: 35,)
                     ],
                   ),

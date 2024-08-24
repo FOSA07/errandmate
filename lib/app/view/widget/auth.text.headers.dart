@@ -19,10 +19,7 @@ class AuthTextHeader extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(
-        fontWeight: fontWeight,
-        fontSize: fontSize
-      ),
+      style: Theme.of(context).textTheme.headlineMedium
     );
   }
 }
