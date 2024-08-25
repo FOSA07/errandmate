@@ -3,18 +3,17 @@ import 'package:go_router/go_router.dart';
 
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
-import 'component/otp.row.dart';
 
-class OTP extends StatelessWidget {
-  const OTP({super.key});
+class PinChanged extends StatelessWidget {
+  const PinChanged({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Forget Password',
-          style: Theme.of(context).textTheme.titleSmall  
+          'Change Password',
+          style: Theme.of(context).textTheme.titleSmall
         ),
         centerTitle: true,
       ),
@@ -22,29 +21,25 @@ class OTP extends StatelessWidget {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            Expanded(
+            const Expanded(
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const AuthTextHeader(
-                      text: 'OTP Verification',
+                    AuthTextHeader(
+                      text: 'Pin Created',
                     ),
-                    const SizedBox(height: 15,),
-                    const Text('A verification code has been sent to ...'),
-                    const SizedBox(height: 25,),
-                    OTPRow(
-                      onCompleted: (otp) {
-                        // print('OTP Entered: $otp');
-                      },
-                    ),
+                    SizedBox(height: 15,),
+                    Text('Congratulations! Enjoy the new way of expressing love.'),
+                    SizedBox(height: 25,),
                   ],
                 ),
               ),
             ),
             AppActionButton(
               text: 'Continue',
-              onPressed: () => context.push('/auth/create-password'),
+              onPressed: () => context.push('/auth'),
               isLoading: false,
             )
           ],

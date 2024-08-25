@@ -4,11 +4,10 @@ import '../../../widget/otp.text.field.dart';
 
 class OTPRow extends StatefulWidget {
   final Function(String) onCompleted;
-
   const OTPRow({super.key, required this.onCompleted});
 
   @override
-  _OTPRowState createState() => _OTPRowState();
+  State<OTPRow> createState() => _OTPRowState();
 }
 
 class _OTPRowState extends State<OTPRow> {

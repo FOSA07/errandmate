@@ -6,12 +6,31 @@ import 'package:go_router/go_router.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
+import 'helper/validator.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> with Validators {
   final TextEditingController _email = TextEditingController();
+
   final TextEditingController _password = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  final ValueNotifier<bool> _obscureText = ValueNotifier<bool>(true);
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +74,38 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 25,),
-                    AppTextFormField(
-                      controller: _email,
-                      labelText: 'Email Address',
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          AppTextFormField(
+                            controller: _email,
+                            labelText: 'Email Address',
+                            validator: validateEmail,
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          const SizedBox(height: 20,),
+                          ValueListenableBuilder(
+                            valueListenable: _obscureText,
+                            builder: (context, value, child) => AppTextFormField(
+                                controller: _password,
+                                labelText: 'Password',
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: _obscureText.value,
+                                suffixIcon: InkWell(
+                                  onTap: () => _obscureText.value = !_obscureText.value,
+                                  child: Icon(
+                                    _obscureText.value ? Icons.remove_red_eye : Icons.visibility_off,
+                                    color: _obscureText.value ? AppColors.grey1 : AppColors.primary,
+                                  )
+                                ),
+                                validator: validatePassword,
+                              )
+                          ),
+                        ]
+                      )
                     ),
-                    const SizedBox(height: 20,),
-                    AppTextFormField(
-                      controller: _password,
-                      labelText: 'Password',
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      suffixIcon: Icon(Icons.remove_red_eye, color: AppColors.grey1,),
-                    ),
+                    
                     const SizedBox(height: 30,),
                     RichText(
                       
@@ -92,7 +131,11 @@ class Login extends StatelessWidget {
             ),
             AppActionButton(
               text: 'Login',
-              onPressed: (){},
+              onPressed: (){
+                if(_formKey.currentState!.validate()){
+                  print('done');
+                }
+              },
               isLoading: false,
             )
           ],

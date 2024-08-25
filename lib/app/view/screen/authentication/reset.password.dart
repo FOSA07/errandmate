@@ -38,6 +38,7 @@ class ResetPassword extends StatelessWidget {
                     AppTextFormField(
                       controller: _email,
                       labelText: 'Email Address',
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ],
                 ),

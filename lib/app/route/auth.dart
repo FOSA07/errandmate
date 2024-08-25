@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 
-import '../view/screen/authentication/create.dart';
+import '../view/screen/authentication/create.account.dart';
+import '../view/screen/authentication/create.password.dart';
 import '../view/screen/authentication/login.dart';
 import '../view/screen/authentication/otp.dart';
+import '../view/screen/authentication/pin.changed.dart';
 import '../view/screen/authentication/reset.password.dart';
 
 class AuthenticationRoutes {
@@ -13,12 +15,12 @@ class AuthenticationRoutes {
       GoRoute(
         path: 'login',
         name: 'signin',
-        builder: (context, state) => Login(),
+        builder: (context, state) => const Login(),
       ),
       GoRoute(
         path: 'create-account',
         name: 'signup',
-        builder: (context, state) => CreateAccount(),
+        builder: (context, state) => const CreateAccount(),
       ),
       GoRoute(
         path: 'reset-password',
@@ -29,6 +31,16 @@ class AuthenticationRoutes {
         path: 'otp',
         name: 'otp',
         builder: (context, state) => const OTP(),
+      ),
+      GoRoute(
+        path: 'create-password',
+        name: 'createpassword',
+        builder: (context, state) => CreatePassword(),
+      ),
+      GoRoute(
+        path: 'pin-changed',
+        name: 'pinchanged',
+        builder: (context, state) => const PinChanged(),
       )
     ];
 
