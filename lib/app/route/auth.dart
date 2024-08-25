@@ -35,7 +35,7 @@ class AuthenticationRoutes {
       GoRoute(
         path: 'create-password',
         name: 'createpassword',
-        builder: (context, state) => CreatePassword(),
+        builder: (context, state) => const CreatePassword(),
       ),
       GoRoute(
         path: 'pin-changed',

@@ -33,17 +33,6 @@ mixin Validators {
     return null;
   }
 
-  String? confirmPassword ({
-    required String password1,
-    required String password2
-  }) {
-    if (password2.isEmpty) return 'Field cannot be empty';
-
-    if(password1 != password2) return 'Password does\'t match';
-
-    return null;
-  }
-
   String? validateName (String? value) {
 
     if (value == null || value.isEmpty) return 'Field cannot be empty';

@@ -5,10 +5,23 @@ import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
 
-class CreatePassword extends StatelessWidget {
-  CreatePassword({super.key});
+class CreatePassword extends StatefulWidget {
+  const CreatePassword({super.key});
 
+  @override
+  State<CreatePassword> createState() => _CreatePasswordState();
+}
+
+class _CreatePasswordState extends State<CreatePassword> {
   final List<TextEditingController> _controllers = List.generate(3, (_) => TextEditingController());
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
