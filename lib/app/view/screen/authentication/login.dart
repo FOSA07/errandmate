@@ -1,10 +1,14 @@
 import 'package:errandmate/app/utils/constant/app.colors/app.colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../viewmodel/provider/authentication/login.user.dart';
+import '../../../viewmodel/provider/authentication/login.user.form.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
+import '../../widget/global.dialog.dart';
 import '../../widget/text.form.field.dart';
 import 'helper/validator.dart';
 
@@ -15,7 +19,7 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> with Validators {
+class _LoginState extends State<Login> with Validators, GlobalDialog {
   final TextEditingController _email = TextEditingController();
 
   final TextEditingController _password = TextEditingController();
@@ -38,7 +42,7 @@ class _LoginState extends State<Login> with Validators {
       appBar: AppBar(
         title: Text(
           'Login',
-          style: Theme.of(context).textTheme.titleSmall
+          style: Theme.of(context).textTheme.displaySmall
         ),
         centerTitle: true,
       ),
@@ -74,36 +78,44 @@ class _LoginState extends State<Login> with Validators {
                       ),
                     ),
                     const SizedBox(height: 25,),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          AppTextFormField(
-                            controller: _email,
-                            labelText: 'Email Address',
-                            validator: validateEmail,
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          const SizedBox(height: 20,),
-                          ValueListenableBuilder(
-                            valueListenable: _obscureText,
-                            builder: (context, value, child) => AppTextFormField(
-                                controller: _password,
-                                labelText: 'Password',
-                                keyboardType: TextInputType.visiblePassword,
-                                obscureText: _obscureText.value,
-                                suffixIcon: InkWell(
-                                  onTap: () => _obscureText.value = !_obscureText.value,
-                                  child: Icon(
-                                    _obscureText.value ? Icons.remove_red_eye : Icons.visibility_off,
-                                    color: _obscureText.value ? AppColors.grey1 : AppColors.primary,
+                    Consumer(
+                      builder: (context, ref, child) {
+                        final loginForm = ref.read(loginUserFormNotifierProvider.notifier);
+
+                        return Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              AppTextFormField(
+                                controller: _email,
+                                labelText: 'Email Address',
+                                validator: validateEmail,
+                                keyboardType: TextInputType.emailAddress,
+                                onChanged: (p0) => loginForm.updateEmail(p0),
+                              ),
+                              const SizedBox(height: 20,),
+                              ValueListenableBuilder(
+                                valueListenable: _obscureText,
+                                builder: (context, value, child) => AppTextFormField(
+                                    controller: _password,
+                                    labelText: 'Password',
+                                    keyboardType: TextInputType.visiblePassword,
+                                    obscureText: _obscureText.value,
+                                    suffixIcon: InkWell(
+                                      onTap: () => _obscureText.value = !_obscureText.value,
+                                      child: Icon(
+                                        _obscureText.value ? Icons.remove_red_eye : Icons.visibility_off,
+                                        color: _obscureText.value ? AppColors.grey1 : AppColors.primary,
+                                      )
+                                    ),
+                                    validator: validatePassword,
+                                    onChanged: (p0) => loginForm.updatePassword(p0),
                                   )
-                                ),
-                                validator: validatePassword,
-                              )
-                          ),
-                        ]
-                      )
+                              ),
+                            ]
+                          )
+                        );
+                      }
                     ),
                     
                     const SizedBox(height: 30,),
@@ -129,14 +141,16 @@ class _LoginState extends State<Login> with Validators {
                 ),
               ),
             ),
-            AppActionButton(
-              text: 'Login',
-              onPressed: (){
-                if(_formKey.currentState!.validate()){
-                  print('done');
-                }
-              },
-              isLoading: false,
+            Consumer(
+              builder: (context, ref, child) =>  AppActionButton(
+                text: 'Login',
+                onPressed: () async {
+                  if(_formKey.currentState!.validate()){
+                    ref.read(loginUserAccountNotifierProvider.notifier).createUser();
+                  }
+                },
+                isLoading: ref.watch(loginUserAccountNotifierProvider).isLoading,
+              ),
             )
           ],
         ),

@@ -16,19 +16,19 @@ class OTPBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 50,
-      // height: 50,
+    return Container(
+      margin: const EdgeInsets.all(4.0),
       child: TextField(
         controller: controller,
         focusNode: focusNode,
-        maxLength: 1,
+        // maxLength: 1,
         autofocus: autoFocus,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        // style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
           counterText: '',
+          contentPadding: EdgeInsets.all(0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))
           ),

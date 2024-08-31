@@ -13,7 +13,7 @@ class PinChanged extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Change Password',
-          style: Theme.of(context).textTheme.titleSmall
+          style: Theme.of(context).textTheme.displaySmall
         ),
         centerTitle: true,
       ),
@@ -31,7 +31,9 @@ class PinChanged extends StatelessWidget {
                       text: 'Pin Created',
                     ),
                     SizedBox(height: 15,),
-                    Text('Congratulations! Enjoy the new way of expressing love.'),
+                    Text('Congratulations! Enjoy the new way of expressing love.',
+                      textAlign: TextAlign.center,
+                    ),
                     SizedBox(height: 25,),
                   ],
                 ),

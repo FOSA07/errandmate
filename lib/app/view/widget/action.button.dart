@@ -25,10 +25,17 @@ class AppActionButton extends StatelessWidget {
         onPressed: onPressed,
         minWidth: fullWidth ? double.infinity : null,
         padding: padding ?? const EdgeInsets.all(15),
-        textColor: isLoading ? AppColors.white3 : AppColors.white1,
-        splashColor: isLoading ? AppColors.progress : AppColors.primary,
-        color: isLoading ? AppColors.progress : AppColors.primary,
-        child: Text(
+        textColor: AppColors.white1,
+        splashColor: AppColors.primary,
+        color:  AppColors.primary,
+        child: isLoading ? SizedBox(
+          height: 20,
+          width: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 1,
+            color: AppColors.white1,
+          ),
+        ) : Text(
           text,
         ),
       ),

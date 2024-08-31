@@ -1,13 +1,15 @@
 class SplashRedirect {
 
-  static Future<bool> call() {
+  static bool call() {
 
-    return Future.delayed(const Duration(seconds: 3), (){
+    return true;
+
+    // return Future.delayed(const Duration(seconds: 1), (){
       
-      /// call fuction to check if current user, first time on app
-      /// 
+    //   /// call fuction to check if current user, first time on app
+    //   /// 
       
-      return true;
-    });
+    //   return true;
+    // });
   }
 }

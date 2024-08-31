@@ -4,11 +4,13 @@ import 'package:go_router/go_router.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
+import 'helper/validator.dart';
 
-class ResetPassword extends StatelessWidget {
+class ResetPassword extends StatelessWidget with Validators {
   ResetPassword({super.key});
 
   final TextEditingController _email = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class ResetPassword extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Forget Password',
-          style: Theme.of(context).textTheme.titleSmall
+          style: Theme.of(context).textTheme.displaySmall
         ),
         centerTitle: true,
       ),
@@ -35,10 +37,14 @@ class ResetPassword extends StatelessWidget {
                     const SizedBox(height: 15,),
                     const Text('Enter your registered email for registration'),
                     const SizedBox(height: 25,),
-                    AppTextFormField(
-                      controller: _email,
-                      labelText: 'Email Address',
-                      keyboardType: TextInputType.emailAddress,
+                    Form(
+                      key: _formKey,
+                      child: AppTextFormField(
+                        controller: _email,
+                        labelText: 'Email Address',
+                        keyboardType: TextInputType.emailAddress,
+                        validator: validateEmail,
+                      ),
                     ),
                   ],
                 ),
@@ -46,7 +52,11 @@ class ResetPassword extends StatelessWidget {
             ),
             AppActionButton(
               text: 'Continue',
-              onPressed: () => context.push('/auth/otp'),
+              onPressed: () { 
+                if(_formKey.currentState!.validate()){
+                  context.push('/auth/pin-changed');
+                }
+              },
               isLoading: false,
             )
           ],

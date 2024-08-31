@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
 
   final _routes = locator<GoRouter>();
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
@@ -32,6 +31,7 @@ class MyApp extends StatelessWidget {
       routerConfig: _routes,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,

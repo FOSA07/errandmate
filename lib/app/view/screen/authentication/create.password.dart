@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
+import 'helper/validator.dart';
 
 class CreatePassword extends StatefulWidget {
   const CreatePassword({super.key});
@@ -12,8 +13,9 @@ class CreatePassword extends StatefulWidget {
   State<CreatePassword> createState() => _CreatePasswordState();
 }
 
-class _CreatePasswordState extends State<CreatePassword> {
+class _CreatePasswordState extends State<CreatePassword> with Validators {
   final List<TextEditingController> _controllers = List.generate(3, (_) => TextEditingController());
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -29,7 +31,7 @@ class _CreatePasswordState extends State<CreatePassword> {
       appBar: AppBar(
         title: Text(
           'Change Password',
-          style: Theme.of(context).textTheme.titleSmall
+          style: Theme.of(context).textTheme.displaySmall
         ),
         centerTitle: true,
       ),
@@ -38,44 +40,61 @@ class _CreatePasswordState extends State<CreatePassword> {
         child: Column(
           children: [
             Expanded(
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    const AuthTextHeader(
-                      text: 'Create Password',
-                    ),
-                    const SizedBox(height: 15,),
-                    const Text('Create a new password for your account'),
-                    const SizedBox(height: 25,),
-                    AppTextFormField(
-                      controller: _controllers[0],
-                      labelText: 'Enter Old Password',
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 20,),
-                    AppTextFormField(
-                      controller: _controllers[1],
-                      labelText: 'Enter New Password',
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 20,),
-                    AppTextFormField(
-                      controller: _controllers[2],
-                      labelText: 'Confirm New Password',
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 30,),
-                  ],
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      const AuthTextHeader(
+                        text: 'Create Password',
+                      ),
+                      const SizedBox(height: 15,),
+                      const Text('Create a new password for your account'),
+                      const SizedBox(height: 25,),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            AppTextFormField(
+                              controller: _controllers[0],
+                              labelText: 'Enter Old Password',
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              validator: validatePassword,
+                            ),
+                            const SizedBox(height: 20,),
+                            AppTextFormField(
+                              controller: _controllers[1],
+                              labelText: 'Enter New Password',
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              validator: validatePassword,
+                            ),
+                            const SizedBox(height: 20,),
+                            AppTextFormField(
+                              controller: _controllers[2],
+                              labelText: 'Confirm New Password',
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              validator: validatePassword,
+                            ),
+                          ],
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 30,),
+                    ],
+                  ),
                 ),
               ),
             ),
             AppActionButton(
               text: 'Continue',
-              onPressed: () => context.push('/auth/pin-changed'),
+              onPressed: () { 
+                if(_formKey.currentState!.validate()){
+                  context.push('/auth/pin-changed');
+                }
+              },
               isLoading: false,
             )
           ],

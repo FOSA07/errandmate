@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../viewmodel/provider/authentication/otp.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import 'component/otp.row.dart';
 
-class OTP extends StatelessWidget {
-  const OTP({super.key});
+class OTP extends ConsumerWidget {
+  final String token;
+  final String uid;
+  OTP({super.key, required this.token, required this.uid});
+
+  ValueNotifier<String> otpValue = ValueNotifier('');
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Forget Password',
-          style: Theme.of(context).textTheme.titleSmall  
+          style: Theme.of(context).textTheme.displaySmall  
         ),
         centerTitle: true,
       ),
@@ -35,6 +42,7 @@ class OTP extends StatelessWidget {
                     const SizedBox(height: 25,),
                     OTPRow(
                       onCompleted: (otp) {
+                        otpValue.value = otp;
                         // print('OTP Entered: $otp');
                       },
                     ),
@@ -44,7 +52,11 @@ class OTP extends StatelessWidget {
             ),
             AppActionButton(
               text: 'Continue',
-              onPressed: () => context.push('/auth/create-password'),
+              onPressed: () {
+                if(otpValue.value.length == 7){
+                  ref.read(oTPNotifierProvider.notifier).verifyOTP(tkn: token, uid: uid, code: otpValue.value);
+                }
+              },
               isLoading: false,
             )
           ],

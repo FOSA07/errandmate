@@ -6,6 +6,7 @@ class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String hintText;
+  final String? prefixText;
   final bool obscureText;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
@@ -21,6 +22,7 @@ class AppTextFormField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.labelText,
+    this.prefixText,
     this.hintText = '',
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
@@ -36,50 +38,53 @@ class AppTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // height: 55,
-      child: TextFormField(
-        controller: controller,
-        obscureText: obscureText,
-        keyboardType: keyboardType,
-        validator: validator,
-        onChanged: onChanged,
-        maxLength: maxLength,
-        enabled: enabled,
-        textInputAction: textInputAction,
-        focusNode: focusNode,
-        decoration: InputDecoration(
-          labelText: labelText,
-          hintText: hintText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          labelStyle: Theme.of(context).textTheme.bodySmall,
-          isDense: true,
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          border: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-            borderSide: BorderSide(
-              color: AppColors.grey2
-            )
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      keyboardType: keyboardType,
+      validator: validator,
+      onChanged: onChanged,
+      maxLength: maxLength,
+      enabled: enabled,
+      textInputAction: textInputAction,
+      focusNode: focusNode,
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        prefix: prefixText != null ? Padding(
+          padding: const EdgeInsets.all(5),
+          child: Text(prefixText!,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            borderSide: BorderSide(
-              color: AppColors.white3
-            )
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            borderSide: BorderSide(
-              color: AppColors.white3
-            )
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            borderSide: BorderSide(
-              color: AppColors.progress
-            )
-          ),
+        ) : null,
+        labelStyle: Theme.of(context).textTheme.bodySmall,
+        isDense: true,
+        contentPadding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+        border: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          borderSide: BorderSide(
+            color: AppColors.grey2
+          )
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          borderSide: BorderSide(
+            color: AppColors.white3
+          )
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          borderSide: BorderSide(
+            color: AppColors.white3
+          )
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          borderSide: BorderSide(
+            color: AppColors.progress
+          )
         ),
       ),
     );
