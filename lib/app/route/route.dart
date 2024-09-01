@@ -34,7 +34,6 @@ final GoRouter routes = GoRouter(
       path: '/auth',
       name: 'auth',
       builder: (context, state) => const Login(),
-
       routes: AuthenticationRoutes.getAuthRoutes(),
     ),
     GoRoute(

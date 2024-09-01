@@ -8,13 +8,15 @@ import '../../../../model/authentication/login.dart';
 import '../../../../network/dio/dio.client.dart';
 import '../authentication.dart';
 
-class LoginService extends Authentication {
+class ForgetPasswordService extends Authentication {
   @override
-  Future<Either<Failure, Response>> loginUser({
-    required UserLoginModel userModel,
+  Future<Either<Failure, Response>> forgetPassword({
+    required String email,
   }) async {
-    var response =
-        await DioClient().post('/auth/login', data: userModel.toJson());
+    var response = await DioClient().post(
+      '/auth/password',
+      data: {"email": email},
+    );
 
     return response.fold((failure) {
       return Left(failure);

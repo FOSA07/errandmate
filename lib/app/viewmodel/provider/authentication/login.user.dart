@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,39 +11,41 @@ import 'login.user.form.dart';
 part 'login.user.g.dart';
 
 @Riverpod(keepAlive: true)
-class LoginUserAccountNotifier extends _$LoginUserAccountNotifier with GlobalDialog{
-
-  Future createUser () async {
-    print("pressed");
-    try{
+class LoginUserAccountNotifier extends _$LoginUserAccountNotifier
+    with GlobalDialog {
+  Future loginUser() async {
+    try {
       state = const AsyncLoading();
       UserLoginModel userModel = ref.read(loginUserFormNotifierProvider);
-      final response = await LoginUserController().createUser(userModel: userModel);
+      final response = await LoginUserController().login(userModel: userModel);
+      log('state = $response');
       state = AsyncValue.data(response);
 
       response.fold(
-        (failure) { 
+        (failure) {
           showAlertDialog(
             message: failure.message,
           );
         },
         (result) => showAlertDialog(
-            message: 'success',
-          )
+          message: 'Login Successfull',
+          success: true,
+          buttonText: 'Proceede',
+        ),
       );
-    }catch(e){
+    } catch (e) {
+      log('e = $e');
+
       state = AsyncValue.error(e, StackTrace.current);
-      
+
       showAlertDialog(
         message: 'an error occured',
       );
     }
-    
-
   }
 
   @override
-  FutureOr build () async{
+  FutureOr build() async {
     return state;
   }
 }

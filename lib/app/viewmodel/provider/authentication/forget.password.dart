@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:errandmate/app/data/controller/authentication/forget.password.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/authentication/create.user.dart';
@@ -9,17 +10,16 @@ import '../../../view/helper/router.dart';
 import '../../../view/widget/global.dialog.dart';
 import 'create.user.form.dart';
 
-part 'create.user.g.dart';
+part 'forget.password.g.dart';
 
 @Riverpod(keepAlive: true)
-class CreateUserAccountNotifier extends _$CreateUserAccountNotifier
+class ForgetPasswordNotifier extends _$ForgetPasswordNotifier
     with GlobalDialog, ViewRouter {
-  Future createUser() async {
+  Future recoverPassword({required String email}) async {
     try {
       state = const AsyncLoading();
-      CreateUserModel userModel = ref.read(createUserFormNotifierProvider);
       final response =
-          await CreateUserController().createUser(userModel: userModel);
+          await ForgetPasswordController().resetPassword(email: email);
       state = AsyncValue.data(response);
 
       response.fold(
@@ -28,7 +28,7 @@ class CreateUserAccountNotifier extends _$CreateUserAccountNotifier
               ), (result) {
         final uri = Uri.parse(result["data"]["verifyUrl"]);
         String tk = uri.queryParameters['tkn']!;
-        goto('/auth/otp/$tk/${result["data"]["userid"]}/false');
+        goto('/auth/otp/$tk/${result["data"]["userid"]}/true');
       });
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);

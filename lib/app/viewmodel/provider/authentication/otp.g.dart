@@ -6,7 +6,7 @@ part of 'otp.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$oTPNotifierHash() => r'f370623ebea0fe6050b65e46dd7926bd1eb556d5';
+String _$oTPNotifierHash() => r'500d3a647749f365ba217b9cad55405bc718fed4';
 
 /// See also [OTPNotifier].
 @ProviderFor(OTPNotifier)

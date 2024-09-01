@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 
@@ -14,11 +16,12 @@ class DioClient {
     _dio.interceptors.add(DioInterceptors());
   }
 
-  Future<Either<Failure, Response>> get(String path, {Map<String, dynamic>? queryParameters}) async {
+  Future<Either<Failure, Response>> get(String path,
+      {Map<String, dynamic>? queryParameters}) async {
     try {
       final result = await _dio.get(path, queryParameters: queryParameters);
       result.data["code"] ??= "99";
-      if(result.statusCode == 200 && result.data["code"] == "00"){
+      if (result.statusCode == 200 && result.data["code"] == "00") {
         return Right(result);
       }
       return Left(Failure(result.data["message"] ?? "Response Error"));
@@ -37,40 +40,44 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-
       // data = {
       //   "firstname": "adebiyi",
       //   "lastname": "akorede",
       //   "username": "james",
-      //   "gender": "Male", 
-      //   "matric_number": "18/80/5908", 
-      //   "email": "james@gmail.com", 
-      //   "phone": "+2349081634255", 
-      //   "institution": "0e395045-95a3-4896-9a64-1ad34b66bea3", 
-      //   "faculty": 1, 
-      //   "department": 1, 
+      //   "gender": "Male",
+      //   "matric_number": "18/80/5908",
+      //   "email": "james@gmail.com",
+      //   "phone": "+2349081634255",
+      //   "institution": "0e395045-95a3-4896-9a64-1ad34b66bea3",
+      //   "faculty": 1,
+      //   "department": 1,
       //   "password": "123456789a"
       // };
-      
-      final result = await _dio.post(path, data: data, queryParameters: queryParameters);
+
+      final result =
+          await _dio.post(path, data: data, queryParameters: queryParameters);
+
+      // log('result = $result');
 
       result.data["code"] ??= "99";
-      if(result.statusCode == 200 && result.data["code"] == "00"){
+      if (result.statusCode == 200 && result.data["code"] == "00") {
         return Right(result);
       }
       return Left(Failure(result.data["message"] ?? "Response Error"));
-
-    } 
-    on DioException catch (e) {
-      
-      if(e.response != null){
-        Map? error = e.response?.data["errors"] ?? e.response?.data["message"] ?? {"name" : ["unknown error from server"]};
+    } on DioException catch (e) {
+      log('error = $e');
+      log('Endpoint = ${e.requestOptions.uri.toString()}');
+      if (e.response != null) {
+        Map? error = e.response?.data["errors"] ??
+            e.response?.data["message"] ??
+            {
+              "name": ["unknown error from server"]
+            };
         return Left(Failure(error![error.keys.first][0].toString()));
       }
-      
+
       return Left(NetworkExceptions.handleDioException(e));
-    } 
-    catch (e) {
+    } catch (e) {
       return Left(Failure(e.toString(), exception: e));
     }
   }
@@ -87,6 +94,4 @@ class DioClient {
   //     return const Left("a bug");
   //   }
   // }
-
-
 }
