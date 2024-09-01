@@ -9,10 +9,13 @@ class PageViewImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      pageNumber == 1 ? AppImages.onboardImage1 :
-      pageNumber == 2 ? AppImages.onboardImage2 :
-      AppImages.onboardImage3,
+      pageNumber == 1
+          ? AppImages.onboardImage1
+          : pageNumber == 2
+              ? AppImages.onboardImage2
+              : AppImages.onboardImage3,
       fit: BoxFit.cover,
+      alignment: Alignment.centerLeft,
     );
     // return AssetImage(
 

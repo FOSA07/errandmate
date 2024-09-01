@@ -8,13 +8,12 @@ class PageViewIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(seconds: 1),
-      height: 10,
+      duration: const Duration(milliseconds: 500),
+      height: 6,
       width: current ? 30 : 10,
       decoration: BoxDecoration(
-        color: AppColors.white1,
-        borderRadius: const BorderRadius.all(Radius.circular(50))
-      ),
+          color: AppColors.white1,
+          borderRadius: const BorderRadius.all(Radius.circular(50))),
     );
   }
 }

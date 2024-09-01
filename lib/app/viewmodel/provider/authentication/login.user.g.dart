@@ -7,7 +7,7 @@ part of 'login.user.dart';
 // **************************************************************************
 
 String _$loginUserAccountNotifierHash() =>
-    r'8639bdd3dd37c088e648855348c8f447401ee89c';
+    r'73745c7be278aad6e8ad8fe434a7d36c7176ddd6';
 
 /// See also [LoginUserAccountNotifier].
 @ProviderFor(LoginUserAccountNotifier)

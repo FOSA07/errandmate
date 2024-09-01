@@ -1,25 +1,24 @@
+import 'package:errandmate/app/viewmodel/provider/authentication/forget.password.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
 import 'helper/validator.dart';
 
-class ResetPassword extends StatelessWidget with Validators {
+class ResetPassword extends ConsumerWidget with Validators {
   ResetPassword({super.key});
 
   final TextEditingController _email = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Forget Password',
-          style: Theme.of(context).textTheme.displaySmall
-        ),
+        title: Text('Forget Password',
+            style: Theme.of(context).textTheme.displaySmall),
         centerTitle: true,
       ),
       body: Padding(
@@ -34,9 +33,13 @@ class ResetPassword extends StatelessWidget with Validators {
                     const AuthTextHeader(
                       text: 'Reset Password',
                     ),
-                    const SizedBox(height: 15,),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     const Text('Enter your registered email for registration'),
-                    const SizedBox(height: 25,),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     Form(
                       key: _formKey,
                       child: AppTextFormField(
@@ -52,12 +55,15 @@ class ResetPassword extends StatelessWidget with Validators {
             ),
             AppActionButton(
               text: 'Continue',
-              onPressed: () { 
-                if(_formKey.currentState!.validate()){
-                  context.push('/auth/pin-changed');
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  ref
+                      .read(forgetPasswordNotifierProvider.notifier)
+                      .recoverPassword(email: _email.text);
+                  // context.push('/auth/pin-changed');
                 }
               },
-              isLoading: false,
+              isLoading: ref.watch(forgetPasswordNotifierProvider).isLoading,
             )
           ],
         ),

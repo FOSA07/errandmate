@@ -13,32 +13,39 @@ class DropDownField extends StatelessWidget {
   final List dropDownValues;
   final ValueChanged? onChanged;
   final bool isLoading;
-  const DropDownField({
-    super.key, 
-    required this.labelText, 
-    required this.hintText, 
-    required this.dropDownValueModel,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.focusNode,
-    this.onChanged,
-    this.isLoading = false,
-    List<dynamic>? dropDownValues
-  }) : dropDownValues = dropDownValues ?? const [];
+  const DropDownField(
+      {super.key,
+      required this.labelText,
+      required this.hintText,
+      required this.dropDownValueModel,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.focusNode,
+      this.onChanged,
+      this.isLoading = false,
+      List<dynamic>? dropDownValues})
+      : dropDownValues = dropDownValues ?? const [];
 
   @override
   Widget build(BuildContext context) {
     return DropDownTextField(
       clearOption: true,
+      textStyle: Theme.of(context).textTheme.labelMedium,
       enableSearch: true,
-      clearIconProperty: IconProperty(color: AppColors.progress),
-      searchTextStyle: TextStyle(color: AppColors.white4),
+      clearIconProperty: IconProperty(
+        color: AppColors.grey3,
+      ),
+      searchTextStyle: TextStyle(
+        color: AppColors.white4,
+        fontSize: 8,
+      ),
+
       dropDownIconProperty: IconProperty(
-        color: dropDownValueModel.isEmpty ? AppColors.progress : null,
+        color: dropDownValueModel.isEmpty ? AppColors.grey3 : null,
         // icon: Icons.auto_awesome
         // icon: Icons.hourglass_bottom
         // icon: Icons.refresh
-        icon: isLoading ? Icons.loop : Icons.arrow_drop_down
+        icon: isLoading ? Icons.more_horiz : Icons.arrow_drop_down,
       ),
       searchDecoration: InputDecoration(
         hintText: "Search...",
@@ -53,47 +60,46 @@ class DropDownField extends StatelessWidget {
         }
       },
       onChanged: onChanged,
-      dropDownItemCount: 3,
-      listTextStyle: Theme.of(context).textTheme.bodyLarge,
+      // dropDownItemCount: 3,
+      listTextStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: Colors.black54,
+          ),
       textFieldDecoration: InputDecoration(
         labelText: labelText,
         hintText: '',
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        labelStyle: Theme.of(context).textTheme.bodySmall,
+        labelStyle: Theme.of(context).textTheme.bodyMedium,
         isDense: true,
         contentPadding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
         border: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          borderSide: BorderSide(
-            color: AppColors.grey2
-          )
-        ),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: AppColors.grey2)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.white3
-          )
-        ),
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: AppColors.white3)),
         focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.white3
-          )
-        ),
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: AppColors.white3)),
         errorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(
-            color: AppColors.progress
-          )
-        ),
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: AppColors.progress)),
       ),
       // dropDownList: dropDownValueModel,
       dropDownList: [
-        ...List.generate(dropDownValues.isEmpty ? dropDownValueModel.length : dropDownValues.length, (index) => DropDownValueModel(
-          name: dropDownValues.isEmpty ? dropDownValueModel[index]["name"]! : dropDownValues[index],
-          value: dropDownValues.isEmpty ? dropDownValueModel[index]["map"]! : index)
-        )
+        ...List.generate(
+            dropDownValues.isEmpty
+                ? dropDownValueModel.length
+                : dropDownValues.length,
+            (index) => DropDownValueModel(
+                name: dropDownValues.isEmpty
+                    ? dropDownValueModel[index]["name"]!
+                    : dropDownValues[index],
+                value: dropDownValues.isEmpty
+                    ? dropDownValueModel[index]["map"]!
+                    : index))
       ],
     );
   }

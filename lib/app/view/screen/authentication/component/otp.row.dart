@@ -11,18 +11,18 @@ class OTPRow extends StatefulWidget {
 }
 
 class _OTPRowState extends State<OTPRow> {
-  final List<TextEditingController> _controllers = List.generate(7, (_) => TextEditingController());
+  final List<TextEditingController> _controllers =
+      List.generate(7, (_) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(7, (_) => FocusNode());
 
   void _onChanged(String value, int index) {
-    
     int indexX = index;
-    if(value.length > 1){
-      for(int a=0; a < 7 - indexX; a++){
+    if (value.length > 1) {
+      for (int a = 0; a < 7 - indexX; a++) {
         _controllers[index].text = value.characters.elementAt(a);
 
         index++;
-        if(index > 6) index = 6;
+        if (index > 6) index = 6;
       }
     }
     if (value.isNotEmpty) {
@@ -55,7 +55,7 @@ class _OTPRowState extends State<OTPRow> {
       children: List.generate(7, (index) {
         return Expanded(
           child: AspectRatio(
-            aspectRatio: 1.0,
+            aspectRatio: .5,
             child: OTPBox(
               controller: _controllers[index],
               focusNode: _focusNodes[index],

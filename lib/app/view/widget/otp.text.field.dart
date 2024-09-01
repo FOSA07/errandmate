@@ -1,3 +1,4 @@
+import 'package:errandmate/app/utils/constant/app.colors/app.colors.dart';
 import 'package:flutter/material.dart';
 
 class OTPBox extends StatelessWidget {
@@ -24,14 +25,17 @@ class OTPBox extends StatelessWidget {
         // maxLength: 1,
         autofocus: autoFocus,
         textAlign: TextAlign.center,
+        cursorHeight: 12,
         // style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         keyboardType: TextInputType.number,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           counterText: '',
           contentPadding: EdgeInsets.all(0),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))
-          ),
+              borderSide: BorderSide(
+                color: AppColors.primary,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(12))),
         ),
         onChanged: onChanged,
       ),
