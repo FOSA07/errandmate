@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/authentication/login.dart';
 import '../../../model/authentication/login.dart';
+import '../../../view/helper/router.dart';
 import '../../../view/widget/global.dialog.dart';
 import 'login.user.form.dart';
 
@@ -12,7 +13,7 @@ part 'login.user.g.dart';
 
 @Riverpod(keepAlive: true)
 class LoginUserAccountNotifier extends _$LoginUserAccountNotifier
-    with GlobalDialog {
+    with GlobalDialog, ViewRouter {
   Future loginUser() async {
     try {
       state = const AsyncLoading();
@@ -31,6 +32,7 @@ class LoginUserAccountNotifier extends _$LoginUserAccountNotifier
           message: 'Login Successfull',
           success: true,
           buttonText: 'Proceede',
+          onClose: () => goto('/features'),
         ),
       );
     } catch (e) {

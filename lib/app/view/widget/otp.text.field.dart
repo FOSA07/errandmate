@@ -30,12 +30,12 @@ class OTPBox extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           counterText: '',
-          contentPadding: EdgeInsets.all(0),
+          contentPadding: const EdgeInsets.all(0),
           border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.primary,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(12))),
+              borderRadius: const BorderRadius.all(Radius.circular(12))),
         ),
         onChanged: onChanged,
       ),

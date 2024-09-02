@@ -9,4 +9,9 @@ class BottomNavIndexNotifier extends _$BottomNavIndexNotifier {
   int build(){
     return 0; 
   }
+
+  set setIndex(int index) {
+    state = index;
+  }
+
 }

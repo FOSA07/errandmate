@@ -12,7 +12,7 @@ mixin GlobalDialog {
       {String message = "Oops! an error occured",
       bool success = false,
       Function()? onClose,
-      String? buttonText}) {
+      String? buttonText,}) {
     showDialog(
       context: _routes.routerDelegate.navigatorKey.currentContext!,
       barrierDismissible: false,
