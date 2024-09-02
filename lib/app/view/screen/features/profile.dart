@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/constant/app.images/app.images.dart';
+import '../../helper/router.dart';
 import 'components/notification.bar.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatelessWidget with ViewRouter{
   const Profile({super.key});
 
   @override
@@ -73,19 +74,20 @@ class Profile extends StatelessWidget {
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(16)),
                   ),
-                  child: const Column(
+                  child: Column(
                     children: [
                       AppListTile(
                         iconPath: AppImages.profile, 
                         title: 'My Acount', 
-                        subtitle: 'Make changes to your account'
+                        subtitle: 'Make changes to your account',
+                        onPressed: () => goto('/features/profile/edit'),
                       ),
-                      AppListTile(
+                      const AppListTile(
                         iconPath: AppImages.profile, 
                         title: 'Transportation', 
                         subtitle: 'Make changes to your account'
                       ),
-                      AppListTile(
+                      const AppListTile(
                         iconPath: AppImages.profile, 
                         title: 'My Errands', 
                         subtitle: 'Manage your account mode'

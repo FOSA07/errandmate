@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/authentication/login.dart';
+import '../../../data/controller/storage/user.dart';
 import '../../../model/authentication/login.dart';
 import '../../../view/helper/router.dart';
 import '../../../view/widget/global.dialog.dart';
@@ -28,12 +29,22 @@ class LoginUserAccountNotifier extends _$LoginUserAccountNotifier
             message: failure.message,
           );
         },
-        (result) => showAlertDialog(
-          message: 'Login Successfull',
-          success: true,
-          buttonText: 'Proceede',
-          onClose: () => goto('/features'),
-        ),
+        (result) async { 
+
+          final userData = await UserStorageController().saveUser(result);
+          userData.fold(
+            (failure) => showAlertDialog(
+              message: failure.message
+            ),
+            (success) => showAlertDialog(
+              message: 'Login Successfull',
+              success: true,
+              buttonText: 'Proceed',
+              onClose: () => goto('/features'),
+            )
+          );
+          
+        }
       );
     } catch (e) {
       log('e = $e');

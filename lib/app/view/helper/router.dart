@@ -13,4 +13,8 @@ mixin ViewRouter {
     : locator<GoRouter>().routerDelegate.navigatorKey.currentContext!.go(path);
   }
 
+  back(){
+    locator<GoRouter>().routerDelegate.navigatorKey.currentContext!.pop();
+  }
+
 }

@@ -1,3 +1,4 @@
+import '../../data/repository/user.storage.dart';
 import '../../data/service/authentication/authentication.dart';
 import '../../data/service/authentication/imp/create.account.dart';
 import '../../data/service/authentication/imp/login.dart';
@@ -37,6 +38,9 @@ void setUpLocator(){
   locator.registerLazySingleton<Authentication>(
     () => OTPService(),
     instanceName: "SendOTP"
+  );
+  locator.registerLazySingleton<SecureStorageService>(
+    () => SecureStorageService()
   );
 
 }

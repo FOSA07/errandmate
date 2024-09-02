@@ -4,7 +4,7 @@ import '../../utils/constant/app.colors/app.colors.dart';
 
 class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
-  final String labelText;
+  final String? labelText;
   final String hintText;
   final String? prefixText;
   final bool obscureText;
@@ -21,7 +21,7 @@ class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
     super.key,
     required this.controller,
-    required this.labelText,
+    this.labelText,
     this.prefixText,
     this.hintText = '',
     this.obscureText = false,

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../view/screen/authentication/login.dart';
 import '../view/screen/features/features.dart';
+import '../view/screen/features/profile.view.dart';
 import '../view/screen/splash.dart';
 import 'auth.dart';
 import 'redirects/splash.redirect.dart';
@@ -42,9 +43,10 @@ final GoRouter routes = GoRouter(
       builder: (context, state) => const Features(),
       routes: [
         GoRoute(
-          path: 'profile/view',
-
+          path: 'profile/edit',
+          builder: (context, state) => const ProfileView(),
         )
+        
       ]
     ),
     

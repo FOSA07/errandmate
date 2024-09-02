@@ -19,15 +19,16 @@ class NotificationComponent extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.topEnd,
           children: [
+            Icon(Icons.notifications_none, color: Color.fromARGB(255, 155, 155, 155),),
             Positioned(
               top: 4,
               right: 3,
               child: CircleAvatar(
                 radius: 4,
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.red,
               ),
             ),
-            Icon(Icons.notifications_none, color: Color.fromARGB(255, 155, 155, 155),),
+            
           ],
         ),
       ),
