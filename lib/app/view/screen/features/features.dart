@@ -61,7 +61,7 @@ class _FeaturesState extends ConsumerState<Features> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 10.0, bottom: 18.0),
             child: NavElement.value[ref.watch(bottomNavIndexNotifierProvider)].widget,
           ),
         )),

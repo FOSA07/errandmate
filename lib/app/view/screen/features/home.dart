@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'components/available.errand.dart';
+import 'components/home.appbar.dart';
 import 'components/ongoing.errand.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -18,6 +19,7 @@ class _HomeState extends ConsumerState<Home> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const HomeAppBar('Nicky Johnson'),
         Text("Ongoing Errand",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
         ),

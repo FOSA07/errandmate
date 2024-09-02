@@ -19,7 +19,6 @@ class AvailableErrandContainer extends StatelessWidget {
         border: Border.all(
           color: const Color.fromARGB(255, 237, 236, 236),
           width: 1,
-          
         ),
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),

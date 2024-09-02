@@ -15,5 +15,6 @@ class AppImages {
   static const String profile = '${_svgBase}profile.svg';
   static const String calendar = '${_svgBase}calendar.svg';
   static const String location = '${_svgBase}location.svg';
+  static const String notification = '${_svgBase}notification.svg';
 
 }

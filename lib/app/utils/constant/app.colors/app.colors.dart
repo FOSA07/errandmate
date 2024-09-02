@@ -27,4 +27,5 @@ class AppColors {
   static Color semiTransparent = const Color(0x80FFFFFF);
 
   static Color progress = const Color(0xFFFB8E8E);
+  
 }
