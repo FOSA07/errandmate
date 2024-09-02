@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constant/app.colors/app.colors.dart';
 
 class AvailableErrandContainer extends StatelessWidget {
   final String errandStatus, position, date, price;

@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/exception/exception.dart';
-import '../../../../model/authentication/login.dart';
 import '../../../../network/dio/dio.client.dart';
 import '../authentication.dart';
 

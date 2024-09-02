@@ -1,10 +1,7 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 
 import '../../../core/exception/exception.dart';
-import '../../../model/authentication/login.dart';
-import '../../../model/user/user.dart';
 import '../../../utils/serviceLocator/service.locator.dart';
 import '../../service/authentication/authentication.dart';
 
