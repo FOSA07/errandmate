@@ -40,6 +40,12 @@ final GoRouter routes = GoRouter(
       path: '/features',
       name: 'features',
       builder: (context, state) => const Features(),
-    )
+      routes: [
+        GoRoute(
+          path: 'profile/view',
+
+        )
+      ]
+    ),
     
 ]);
