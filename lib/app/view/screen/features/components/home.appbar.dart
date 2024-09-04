@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../viewmodel/provider/user/user.profile.dart';
 import 'notification.bar.dart';
 
 class HomeAppBar extends ConsumerWidget {
-  final String name;
-  const HomeAppBar(this.name, {super.key});
+  const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +24,7 @@ class HomeAppBar extends ConsumerWidget {
         style: Theme.of(context).textTheme.displayMedium,
       ),
       subtitle: Text(
-        name,
+        ref.watch(userProfileNotifierProvider)?.username ?? "...",
         
       ),
       trailing: const NotificationComponent()

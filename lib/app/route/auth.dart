@@ -30,8 +30,9 @@ class AuthenticationRoutes {
           builder: (context, state) {
             final tkn = state.pathParameters['tkn'];
             final uid = state.pathParameters['uid'];
-            final isForgetPassword =
-                state.pathParameters['isForgetPassword'] as bool;
+            final bool isForgetPassword =
+                state.pathParameters['isForgetPassword'] == 'true' ?
+                  true : false;
 
             return OTP(
               token: tkn.toString(),

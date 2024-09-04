@@ -1,13 +1,12 @@
 import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/authentication/login.dart';
-import '../../../data/controller/storage/user.dart';
 import '../../../model/authentication/login.dart';
 import '../../../view/helper/router.dart';
 import '../../../view/widget/global.dialog.dart';
+import '../user/user.profile.dart';
 import 'login.user.form.dart';
 
 part 'login.user.g.dart';
@@ -30,18 +29,13 @@ class LoginUserAccountNotifier extends _$LoginUserAccountNotifier
           );
         },
         (result) async { 
-
-          final userData = await UserStorageController().saveUser(result);
-          userData.fold(
-            (failure) => showAlertDialog(
-              message: failure.message
-            ),
-            (success) => showAlertDialog(
-              message: 'Login Successfull',
-              success: true,
-              buttonText: 'Proceed',
-              onClose: () => goto('/features'),
-            )
+          await ref.read(userProfileNotifierProvider.notifier).fetchUserProfile();
+          
+          showAlertDialog(
+            message: 'Login Successfull',
+            success: true,
+            buttonText: 'Proceed',
+            onClose: () => goto('/features'),
           );
           
         }

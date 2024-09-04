@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -9,10 +8,14 @@ import '../authentication.dart';
 
 class OTPService extends Authentication {
   @override
-  Future<Either<Failure, Response>> sendOTP({required String tkn}) async {
+  Future<Either<Failure, Response>> sendOTP({
+    required String tkn,
+    required String uid,
+    required String code
+  }) async {
     var response = await DioClient().post(
       '/auth/account/verify/resend?tkn=$tkn',
-      // data: {"tkn": tkn}
+      data: {"userid": uid, "code": code}
     );
 
     return response.fold((failure) {

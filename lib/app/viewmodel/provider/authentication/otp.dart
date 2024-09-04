@@ -8,9 +8,17 @@ part 'otp.g.dart';
 
 @Riverpod(keepAlive: true)
 class OTPNotifier extends _$OTPNotifier with GlobalDialog, ViewRouter {
-  Future sendOTP({required String tkn}) async {
+  Future sendOTP({
+    required String tkn,
+    required String uid,
+    required String code
+  }) async {
     state = const AsyncLoading();
-    final response = await OTPController().sendOTP(tkn: tkn);
+    final response = await OTPController().sendOTP(
+      tkn: tkn,
+      uid: uid,
+      code: code
+    );
 
     response.fold(
       (failure) {

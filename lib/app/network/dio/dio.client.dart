@@ -5,20 +5,25 @@ import 'package:dartz/dartz.dart';
 
 import '../../core/exception/exception.dart';
 import '../../core/exception/network/network.exceptions.dart';
+import '../../data/controller/storage/user.dart';
 import '../config/base.options.dart';
 import 'dio.interceptors.dart';
 
 class DioClient {
   late final Dio _dio;
+  final UserStorageController _userstorageController = UserStorageController();
 
   DioClient() {
     _dio = Dio(DioBaseOptions.options);
-    _dio.interceptors.add(DioInterceptors());
+    _dio.interceptors.add(DioInterceptors(_userstorageController));
   }
 
   Future<Either<Failure, Response>> get(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
+      // _dio.options.headers.addAll({
+      //   "Authoriztion": "Bearer sf9y2AHwdyBnMIF17AbN0Tvg8DbdpSEJ2m9KGiUlc187c94d"
+      // });
       final result = await _dio.get(path, queryParameters: queryParameters);
       result.data["code"] ??= "99";
       if (result.statusCode == 200 && result.data["code"] == "00") {

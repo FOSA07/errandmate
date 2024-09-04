@@ -18,6 +18,8 @@ abstract class Authentication {
 
   Future<Either<Failure, Response>> sendOTP({
     required String tkn,
+    required String uid,
+    required String code
   }) =>
       throw UnimplementedError();
 

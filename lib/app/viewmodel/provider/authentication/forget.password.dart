@@ -28,6 +28,7 @@ class ForgetPasswordNotifier extends _$ForgetPasswordNotifier
       });
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
+
       return Left(e.toString());
     }
   }

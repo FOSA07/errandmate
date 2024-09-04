@@ -31,13 +31,13 @@ class BottomNavItem extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   svgIconPath,
-                  colorFilter: current ? const ColorFilter.mode(Colors.blue, BlendMode.srcIn) : null,
+                  colorFilter: current ? ColorFilter.mode(AppColors.blue1, BlendMode.srcIn) : null,
 
                 ),
                 if (current) const SizedBox(width: 5,),
                 if (current) Text(
                   name,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color:Colors.blue, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color:AppColors.blue1, fontWeight: FontWeight.bold),
                 )
               ],
             ),

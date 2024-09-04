@@ -19,7 +19,7 @@ class _HomeState extends ConsumerState<Home> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const HomeAppBar('Nicky Johnson'),
+        const HomeAppBar(),
         Text("Ongoing Errand",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
         ),

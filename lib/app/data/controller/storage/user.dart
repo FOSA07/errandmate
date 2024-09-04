@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/exception/exception.dart';
-import '../../../model/user/user.dart';
 import '../../../utils/serviceLocator/service.locator.dart';
 import '../../repository/user.storage.dart';
 
 class UserStorageController {
-
-  SecureStorageService _secureStorageService;
+  final SecureStorageService _secureStorageService;
 
   static UserStorageController? _userStorageController;
 
@@ -15,20 +13,19 @@ class UserStorageController {
 
   factory UserStorageController() => _userStorageController ??= UserStorageController._();
 
-  Future<Either<Failure, UserModel>> saveUser(UserModel user) {
-    return _secureStorageService.saveUser(user);
+  Future<Either<Failure, String>> storeToken(String token) {
+    return _secureStorageService.storeToken(token);
   }
 
-  Future<Either<Failure, UserModel?>> getUser() async {
-    return await _secureStorageService.getUser();
+  Future<Either<Failure, String?>> getToken() async {
+    return await _secureStorageService.getToken();
   }
 
-  Future<Either<Failure, bool>> isCurrentUser() async {
-    return await _secureStorageService.isCurrentUser();
+  Future<Either<Failure, bool>> hasToken() async {
+    return await _secureStorageService.hasToken();
   }
 
-  Future<bool> deleteUser() async {
-    return await _secureStorageService.deleteUser();
+  Future<Either<Failure, bool>> deleteToken() async {
+    return await _secureStorageService.deleteToken();
   }
-
 }

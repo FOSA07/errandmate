@@ -11,10 +11,18 @@ class OTPController {
 
   factory OTPController() => _instance ??= OTPController._();
 
-  Future<Either<Failure, Map>> sendOTP({required String tkn}) async {
+  Future<Either<Failure, Map>> sendOTP({
+    required String tkn,
+    required String uid,
+    required String code
+  }) async {
     final sendOTPService = locator<Authentication>(instanceName: "SendOTP");
 
-    final response = await sendOTPService.sendOTP(tkn: tkn);
+    final response = await sendOTPService.sendOTP(
+      tkn: tkn,
+      uid: uid,
+      code: code
+    );
 
     return response.fold(
       (failure) => Left(failure),
