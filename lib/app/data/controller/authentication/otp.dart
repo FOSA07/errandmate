@@ -20,8 +20,6 @@ class OTPController {
 
     final response = await sendOTPService.sendOTP(
       tkn: tkn,
-      uid: uid,
-      code: code
     );
 
     return response.fold(

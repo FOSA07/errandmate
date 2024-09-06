@@ -18,8 +18,6 @@ abstract class Authentication {
 
   Future<Either<Failure, Response>> sendOTP({
     required String tkn,
-    required String uid,
-    required String code
   }) =>
       throw UnimplementedError();
 
@@ -33,6 +31,13 @@ abstract class Authentication {
     required String uid,
     required String code,
     required bool isPasswordRecoveryCerification,
+  }) =>
+      throw UnimplementedError();
+
+  Future<Either<Failure, Response>> createPassword({
+    required String hash,
+    required String uid,
+    required String password,
   }) =>
       throw UnimplementedError();
 }

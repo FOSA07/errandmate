@@ -1,6 +1,7 @@
 import '../../data/repository/user.storage.dart';
 import '../../data/service/authentication/authentication.dart';
 import '../../data/service/authentication/imp/create.account.dart';
+import '../../data/service/authentication/imp/create.password.dart';
 import '../../data/service/authentication/imp/forget.password.dart';
 import '../../data/service/authentication/imp/login.dart';
 import '../../data/service/authentication/imp/otp.dart';
@@ -45,6 +46,10 @@ void setUpLocator(){
   locator.registerLazySingleton<Authentication>(
     () => ForgetPasswordService(),
     instanceName: "ForgetPasswordService"
+  );
+  locator.registerLazySingleton<Authentication>(
+    () => CreatePasswordService(),
+    instanceName: "CreatePasswordService"
   );
   locator.registerLazySingleton<SecureStorageService>(
     () => SecureStorageService()

@@ -55,7 +55,10 @@ class OTPNotifier extends _$OTPNotifier with GlobalDialog, ViewRouter {
         );
       },
       (data) {
+        String hash = data["resetUrl"].toString().split("=").last;
         state = AsyncValue.data(data);
+        isFgtPassword ?
+          goto('/auth/create-password/$hash/$uid') :
         showAlertDialog(
           message: "Account Verified Successfully",
           success: true,

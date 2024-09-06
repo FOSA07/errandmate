@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../viewmodel/provider/authentication/create.password.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/text.form.field.dart';
 import 'helper/validator.dart';
-
 class CreatePassword extends StatefulWidget {
-  const CreatePassword({super.key});
+  final String hashValue;
+  final String uid;
+  const CreatePassword({super.key, required this.hashValue, required this.uid});
 
   @override
   State<CreatePassword> createState() => _CreatePasswordState();
@@ -55,14 +57,14 @@ class _CreatePasswordState extends State<CreatePassword> with Validators {
                         key: _formKey,
                         child: Column(
                           children: [
-                            AppTextFormField(
-                              controller: _controllers[0],
-                              labelText: 'Enter Old Password',
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              validator: validatePassword,
-                            ),
-                            const SizedBox(height: 20,),
+                            // AppTextFormField(
+                            //   controller: _controllers[0],
+                            //   labelText: 'Enter Old Password',
+                            //   keyboardType: TextInputType.visiblePassword,
+                            //   obscureText: true,
+                            //   validator: validatePassword,
+                            // ),
+                            // const SizedBox(height: 20,),
                             AppTextFormField(
                               controller: _controllers[1],
                               labelText: 'Enter New Password',
@@ -76,7 +78,11 @@ class _CreatePasswordState extends State<CreatePassword> with Validators {
                               labelText: 'Confirm New Password',
                               keyboardType: TextInputType.visiblePassword,
                               obscureText: true,
-                              validator: validatePassword,
+                              validator: (p0) => _controllers[2].text.isEmpty
+                                ? 'Please enter a password'
+                                : _controllers[1].text == _controllers[2].text
+                                    ? null
+                                    : 'Password doesn\'t match',
                             ),
                           ],
                         ),
@@ -88,14 +94,21 @@ class _CreatePasswordState extends State<CreatePassword> with Validators {
                 ),
               ),
             ),
-            AppActionButton(
-              text: 'Continue',
-              onPressed: () { 
-                if(_formKey.currentState!.validate()){
-                  context.push('/auth/pin-changed');
-                }
-              },
-              isLoading: false,
+            Consumer(
+              builder: (context, ref, child) => AppActionButton(
+                text: 'Continue',
+                onPressed: () { 
+                  if(_formKey.currentState!.validate()){
+                    // context.push('/auth/pin-changed');
+                    ref.read(createPasswordNotifierProvider.notifier).createNewPassword(
+                      hash: widget.hashValue,
+                      uid: widget.uid,
+                      newPassword: _controllers[2].text
+                    );
+                  }
+                },
+                isLoading: ref.watch(createPasswordNotifierProvider).isLoading,
+              ),
             )
           ],
         ),

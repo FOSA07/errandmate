@@ -42,9 +42,12 @@ class AuthenticationRoutes {
           },
         ),
         GoRoute(
-          path: 'create-password',
+          path: 'create-password/:hash/:uid',
           name: 'createpassword',
-          builder: (context, state) => const CreatePassword(),
+          builder: (context, state) => CreatePassword(
+            hashValue: state.pathParameters["hash"]!,
+            uid: state.pathParameters["uid"]!,
+          ),
         ),
         GoRoute(
           path: 'pin-changed',

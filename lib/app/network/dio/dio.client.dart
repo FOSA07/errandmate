@@ -21,9 +21,7 @@ class DioClient {
   Future<Either<Failure, Response>> get(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
-      // _dio.options.headers.addAll({
-      //   "Authoriztion": "Bearer sf9y2AHwdyBnMIF17AbN0Tvg8DbdpSEJ2m9KGiUlc187c94d"
-      // });
+      
       final result = await _dio.get(path, queryParameters: queryParameters);
       result.data["code"] ??= "99";
       if (result.statusCode == 200 && result.data["code"] == "00") {
@@ -45,22 +43,10 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      // data = {
-      //   "firstname": "adebiyi",
-      //   "lastname": "akorede",
-      //   "username": "james",
-      //   "gender": "Male",
-      //   "matric_number": "18/80/5908",
-      //   "email": "james@gmail.com",
-      //   "phone": "+2349081634255",
-      //   "institution": "0e395045-95a3-4896-9a64-1ad34b66bea3",
-      //   "faculty": 1,
-      //   "department": 1,
-      //   "password": "123456789a"
-      // };
 
       final result =
           await _dio.post(path, data: data, queryParameters: queryParameters);
+
 
       // log('result = $result');
 

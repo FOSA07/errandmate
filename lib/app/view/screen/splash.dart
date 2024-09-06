@@ -49,7 +49,6 @@ class _AppSplashState extends ConsumerState<AppSplash>
                   child: AppActionButton(
                     text: 'Reload',
                     onPressed: () {
-                      // listener();
                       ref.invalidate(institutionNotifierProvider);
                     },
                     isLoading: false,
