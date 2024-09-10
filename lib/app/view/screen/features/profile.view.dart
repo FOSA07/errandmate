@@ -179,7 +179,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
 
               AppActionButton(
                 text: 'save', 
-                onPressed: () {}, 
+                onPressed: () {},
                 isLoading: false
               ),
               const SizedBox(height: 4)

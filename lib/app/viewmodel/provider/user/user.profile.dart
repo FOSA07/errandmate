@@ -21,6 +21,7 @@ class UserProfileNotifier extends _$UserProfileNotifier with GlobalDialog{
     );
   }
 
+  @override
   UserProfileModel? build () {
     return state;
   }

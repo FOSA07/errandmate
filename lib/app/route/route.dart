@@ -25,7 +25,7 @@ final GoRouter routes = GoRouter(
         /// check user status
         /// ---- new user
         /// ---- current user
-        bool result = await SplashRedirect.call();
+        bool result = SplashRedirect.call();
 
         return result ? null : '/home';
       },

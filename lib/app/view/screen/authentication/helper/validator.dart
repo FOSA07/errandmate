@@ -8,8 +8,9 @@ mixin Validators {
 
     value = value.trim();
 
-    if (!emailRegExp.hasMatch(value))
+    if (!emailRegExp.hasMatch(value)) {
       return 'Please enter a valid email address';
+    }
 
     return null;
   }
