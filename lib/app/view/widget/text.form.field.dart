@@ -53,6 +53,7 @@ class AppTextFormField extends StatelessWidget {
       },
       style: Theme.of(context).textTheme.labelLarge,
       decoration: InputDecoration(
+        enabled: enabled,
         labelText: labelText,
         hintText: hintText,
         prefixIcon: prefixIcon,

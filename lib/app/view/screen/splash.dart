@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../helper/router.dart';
 import '../widget/action.button.dart';
-import '../widget/global.dialog.dart';
+import '../miscellaneous/global.dialog.dart';
 
 class AppSplash extends ConsumerStatefulWidget {
   const AppSplash({super.key});

@@ -46,8 +46,6 @@ class DioClient {
 
       final result =
           await _dio.post(path, data: data, queryParameters: queryParameters);
-
-
       // log('result = $result');
 
       result.data["code"] ??= "99";

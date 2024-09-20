@@ -16,7 +16,7 @@ import '../../helper/router.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
 import '../../widget/dropdown.dart';
-import '../../widget/global.dialog.dart';
+import '../../miscellaneous/global.dialog.dart';
 import '../../widget/text.form.field.dart';
 import 'helper/auth.helper.dart';
 import 'helper/validator.dart';

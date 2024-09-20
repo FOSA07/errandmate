@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.profile.dart';
+part of 'outdoor.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userProfileNotifierHash() =>
-    r'159db70b1fbe9d148f9df62d2f6867ee97c0f23f';
+String _$getOutdoorNotifierHash() =>
+    r'a22f5cc6dbc3ab7d9e5419dba40a1aaf538c2593';
 
-/// See also [UserProfileNotifier].
-@ProviderFor(UserProfileNotifier)
-final userProfileNotifierProvider =
-    NotifierProvider<UserProfileNotifier, UserProfileModel?>.internal(
-  UserProfileNotifier.new,
-  name: r'userProfileNotifierProvider',
+/// See also [GetOutdoorNotifier].
+@ProviderFor(GetOutdoorNotifier)
+final getOutdoorNotifierProvider =
+    AsyncNotifierProvider<GetOutdoorNotifier, Object?>.internal(
+  GetOutdoorNotifier.new,
+  name: r'getOutdoorNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$userProfileNotifierHash,
+      : _$getOutdoorNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$UserProfileNotifier = Notifier<UserProfileModel?>;
+typedef _$GetOutdoorNotifier = AsyncNotifier<Object?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

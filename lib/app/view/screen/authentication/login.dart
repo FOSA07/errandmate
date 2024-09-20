@@ -8,7 +8,7 @@ import '../../../viewmodel/provider/authentication/login.user.dart';
 import '../../../viewmodel/provider/authentication/login.user.form.dart';
 import '../../widget/action.button.dart';
 import '../../widget/auth.text.headers.dart';
-import '../../widget/global.dialog.dart';
+import '../../miscellaneous/global.dialog.dart';
 import '../../widget/text.form.field.dart';
 import 'helper/validator.dart';
 

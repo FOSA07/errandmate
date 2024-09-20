@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/authentication/create.password.dart';
 import '../../../view/helper/router.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 
 part 'create.password.g.dart';
 

@@ -39,6 +39,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
 
   @override
   Widget build(BuildContext context) {
+    final userprofile = ref.watch(userProfileNotifierProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -54,7 +55,6 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
                     onTap: () => back(),
                     child: const Icon(Icons.arrow_back)
                   ),
-
                   SvgPicture.asset(
                     AppImages.settings,
                   ),
@@ -65,11 +65,11 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         width: double.infinity,
                         child: Column(
                           children: [
-                            Stack(
+                            const Stack(
                               alignment: AlignmentDirectional.bottomCenter,
                               children: [
 
@@ -84,8 +84,8 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
                                 ),
                               ],
                             ),
-                            Text('data'),
-                            Text('data')
+                            Text("${userprofile!.firstname} ${userprofile.lastname}"),
+                            const Text('data')
                           ],
                         ),
                       ),
@@ -101,7 +101,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> with ViewRouter, Vali
                       AppTextFormField(
                         controller: _email,
                         hintText: ref.read(userProfileNotifierProvider)!.email,
-
+                        enabled: false,
                       ),
                       const SizedBox(
                         height: 20,

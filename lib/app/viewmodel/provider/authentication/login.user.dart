@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../data/controller/authentication/login.dart';
 import '../../../model/authentication/login.dart';
 import '../../../view/helper/router.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 import '../user/user.profile.dart';
 import 'login.user.form.dart';
 

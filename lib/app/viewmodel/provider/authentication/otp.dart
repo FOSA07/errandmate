@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../view/helper/router.dart';
 
 import '../../../data/controller/authentication/otp.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 
 part 'otp.g.dart';
 

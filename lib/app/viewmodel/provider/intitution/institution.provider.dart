@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../data/controller/institutions.dart';
 import '../../../model/institution.dart';
 import '../../../view/helper/router.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 
 part 'institution.provider.g.dart';
 

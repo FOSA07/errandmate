@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/controller/user/user.profile.dart';
 import '../../../model/user/profile.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 
 part 'user.profile.g.dart';
 
@@ -10,7 +10,6 @@ part 'user.profile.g.dart';
 class UserProfileNotifier extends _$UserProfileNotifier with GlobalDialog{
 
   Future fetchUserProfile () async {
-
     final result = await UserProfileController().getUserProfile();
 
     result.fold(

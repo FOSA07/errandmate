@@ -6,6 +6,8 @@ import '../../data/service/authentication/imp/forget.password.dart';
 import '../../data/service/authentication/imp/login.dart';
 import '../../data/service/authentication/imp/otp.dart';
 import '../../data/service/department/department.dart';
+import '../../data/service/errands/errands.dart';
+import '../../data/service/errands/imp/get.available.errands.dart';
 import '../../data/service/faculty/faculty.dart';
 import '../../data/service/institution/imp/institutions.dart';
 import '../../data/service/institution/institution.dart';
@@ -57,6 +59,10 @@ void setUpLocator(){
   locator.registerLazySingleton<User>(
     () => UserProfileService(),
     instanceName: "UserProfile"
+  );
+  locator.registerLazySingleton<Errands>(
+    () => GetErrandsService(),
+    instanceName: "GetErrandsService"
   );
 
 }

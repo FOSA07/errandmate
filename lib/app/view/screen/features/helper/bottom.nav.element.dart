@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constant/app.images/app.images.dart';
-import '../errand.dart';
+import '../errands/errand.dart';
 import '../home.dart';
 import '../profile.dart';
 

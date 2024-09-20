@@ -4,7 +4,7 @@ import 'package:errandmate/app/data/controller/authentication/forget.password.da
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../view/helper/router.dart';
-import '../../../view/widget/global.dialog.dart';
+import '../../../view/miscellaneous/global.dialog.dart';
 
 part 'forget.password.g.dart';
 
