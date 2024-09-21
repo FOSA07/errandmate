@@ -27,7 +27,7 @@ class _HomeState extends ConsumerState<Home> {
         const OngoingErrandContainer(
           name: "Dr Imran Syahir", 
           errandStatus: 'pick up', 
-          date: 'Sunday, 12 June', 
+          date: '2024-01-01', 
           location: 'lorem ipsum lorem ipsum lorem ipsum'
         ),
         const SizedBox(height: 25,),
@@ -47,7 +47,7 @@ class _HomeState extends ConsumerState<Home> {
                 AvailableErrandContainer(
                   errandStatus: "Pick up",
                   position: "General Director",
-                  date: 'Sunday, 12 June',
+                  date: '2024-01-01',
                   price: '2500',
                 ),
                 SizedBox(height: 15,),

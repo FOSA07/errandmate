@@ -12,6 +12,7 @@ class GetOutdoorNotifier extends _$GetOutdoorNotifier with GlobalSnackBar{
 
     final result = await ErrandsController().getErrands("outdoor");
 
+
     return result.fold(
       (failure) {
         showSnackbar();

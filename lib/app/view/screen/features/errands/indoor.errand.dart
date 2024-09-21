@@ -23,10 +23,10 @@ class _IndoorErrandsState extends ConsumerState<IndoorErrands> {
     return EasyRefresh(
       controller: _controller,
       onRefresh: () async => await ref.refresh(getIndoorNotifierProvider.future),
-      header: const ClassicHeader(
+      header: ClassicHeader(
         hitOver: true,
         showText: false,
-        succeededIcon: AnimatedOpacity(opacity: 0, duration: Duration(seconds: 1))
+        succeededIcon: getIndoorErrands is List? const Icon(Icons.check_rounded) :const SizedBox() 
       ),
       footer: const ClassicFooter(),
       child: getIndoorErrands.when(
@@ -36,17 +36,47 @@ class _IndoorErrandsState extends ConsumerState<IndoorErrands> {
             children: [
               AvailableErrandContainer(
                 errandStatus: "indoor",
-                position: "position",
+                position: data[index]["owner"]["email"] ?? "",
                 date: data[index]["created_at"] ?? "",
                 price: data[index]["budget"] ?? ""
               ),
               const SizedBox(height: 15,),
             ],
           ),) : Center(child: getIndoorErrands.isLoading ?
-            const CircularProgressIndicator() : TextButton(
-            onPressed: () => ref.invalidate(getIndoorNotifierProvider), child: const Text("reload"))),
-        error: (error, stackTrace) => Text("Error - $error ${error.runtimeType}"),
-        loading: () => const CircularProgressIndicator()
+            const SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            ) : TextButton(
+              onPressed: () => ref.invalidate(getIndoorNotifierProvider),
+              style: const ButtonStyle(backgroundColor: 
+                WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
+              child: const Text("reload"),  
+            )),
+        error: (error, stackTrace) => Center(child: getIndoorErrands.isLoading ?
+            const SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            ) : TextButton(
+              onPressed: () => ref.invalidate(getIndoorNotifierProvider),
+              style: const ButtonStyle(backgroundColor: 
+                WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
+              child: const Text("reload"),  
+            )),
+        loading: () => const Center(
+          child: SizedBox(
+            height: 20,
+            width: 20,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          )
+        )
       ),
     );
   }

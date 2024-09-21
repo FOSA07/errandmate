@@ -22,24 +22,33 @@ class _ErrandsPageState extends ConsumerState<ErrandsPage> {
       children: [
         const HomeAppBar(),
         const SizedBox(height: 10,),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ...List.generate(
-                ErrandNavElement.value.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: TabBarChip(
-                        text: ErrandNavElement.value[index].text,
-                        onPressed: () => 
-                          ref.read(errandsPageControllerNotifierProvider.notifier).setIndex = index,
-                        isCurrent: ref.watch(errandsPageControllerNotifierProvider) == index,
-                      ),
-                  ),
-                    
-                  ),
-            ],
+        IntrinsicHeight(
+          child: OverflowBox(
+            minWidth: 0,
+            maxWidth: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: [
+                    ...List.generate(
+                      ErrandNavElement.value.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: TabBarChip(
+                              text: ErrandNavElement.value[index].text,
+                              onPressed: () => 
+                                ref.read(errandsPageControllerNotifierProvider.notifier).setIndex = index,
+                              isCurrent: ref.watch(errandsPageControllerNotifierProvider) == index,
+                            ),
+                        ),
+                          
+                        ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 20,),

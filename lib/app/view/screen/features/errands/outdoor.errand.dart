@@ -29,9 +29,10 @@ class _OutdoorErrandsState extends ConsumerState<OutdoorErrands> {
     return EasyRefresh(
       controller: _controller,
       onRefresh: () async => await ref.refresh(getOutdoorNotifierProvider.future),
-      header: const ClassicHeader(
+      header: ClassicHeader(
         hitOver: true,
-        showText: false
+        showText: false,
+        succeededIcon: getOutdoorErrands is List? const Icon(Icons.check_rounded) :const SizedBox() 
       ),
       footer: const ClassicFooter(),
       child: getOutdoorErrands.when(
@@ -41,18 +42,46 @@ class _OutdoorErrandsState extends ConsumerState<OutdoorErrands> {
             children: [
               AvailableErrandContainer(
                 errandStatus: "outdoor",
-                position: data[index]["email"] ?? "",
-                date: data[index]["created_at"] ?? "",
+                position: data[index]["owner"]["email"] ?? "",
+                date: data[index]["created_at"].toString().substring(0, data[index]["created_at"].toString().indexOf("T")) ?? "",
                 price: data[index]["budget"] ?? ""
               ),
               const SizedBox(height: 15,),
             ],
           ),) : Center(child: getOutdoorErrands.isLoading ?
-            const CircularProgressIndicator() : TextButton(
-            onPressed: () => ref.invalidate(getOutdoorNotifierProvider), child: const Text("reload"))),
-        error: (error, stackTrace) => Text("Error - $error ${error.runtimeType}"),
+            const SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            ) : TextButton(
+              onPressed: () => ref.invalidate(getOutdoorNotifierProvider),
+              style: const ButtonStyle(backgroundColor: 
+                WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
+              child: const Text("reload"),  
+            )),
+        error: (error, stackTrace) => Center(child: getOutdoorErrands.isLoading ?
+            const SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            ) : TextButton(
+              onPressed: () => ref.invalidate(getOutdoorNotifierProvider),
+              style: const ButtonStyle(backgroundColor: 
+                WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
+              child: const Text("reload"),  
+            )),
         loading: () => const Center(
-          child: CircularProgressIndicator(),
+          child: SizedBox(
+            height: 20,
+            width: 20,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          )
         )
       ),
     );

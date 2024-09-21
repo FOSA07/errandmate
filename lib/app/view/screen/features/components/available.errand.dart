@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 
 class AvailableErrandContainer extends StatelessWidget {
   final String errandStatus, position, date, price;
@@ -50,7 +50,7 @@ class AvailableErrandContainer extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          date,
+                          DateFormat('EEEE, dd MMMM yyyy').format(DateTime.parse(date)),
                           maxLines: 1,
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
@@ -65,7 +65,7 @@ class AvailableErrandContainer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '#$price',
+                        '${price.isNotEmpty ? "#" : ""}$price',
                         style: Theme.of(context).textTheme.bodyMedium
                       )
                     ],

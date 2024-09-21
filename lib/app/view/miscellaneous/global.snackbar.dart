@@ -14,9 +14,10 @@ mixin GlobalSnackBar {
     ScaffoldMessenger.
       of(_routes.routerDelegate.navigatorKey.currentContext!).
       showSnackBar(
-        SnackBar(
-          content: const Text("an error occured"),
-          action: SnackBarAction(label: "reload", onPressed: () => action),
+        const SnackBar(
+          content: Text("failed to fetch data"),
+          // action: SnackBarAction(label: "reload", onPressed: () => action),
+
         )
       );
   }
