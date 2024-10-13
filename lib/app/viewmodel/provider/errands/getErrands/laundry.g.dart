@@ -7,7 +7,7 @@ part of 'laundry.dart';
 // **************************************************************************
 
 String _$getLaundryNotifierHash() =>
-    r'6cfb93a52d85591ae7bd3041c4dab1916235d0eb';
+    r'967809f1f8f2e7641f93e413d1e2af091f7c4434';
 
 /// See also [GetLaundryNotifier].
 @ProviderFor(GetLaundryNotifier)

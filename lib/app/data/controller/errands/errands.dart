@@ -24,4 +24,16 @@ class ErrandsController {
         return Right(success.data["data"]["data"]);
       });
   }
+
+  Future<Either<Failure, Object>> createErrandTask (String errandType, Map<String, dynamic> requestMap) async {
+
+    final getService = locator<Errands>(instanceName: "CreateErrandTaskService");
+
+    final result = await getService.createErrandTask(errandType, requestMap);
+
+    return result.fold(
+      (failure) => Left(failure), 
+      (success) => Right(success.data)
+    );
+  }
 }

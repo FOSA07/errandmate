@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: _routes,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Errandmate',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,

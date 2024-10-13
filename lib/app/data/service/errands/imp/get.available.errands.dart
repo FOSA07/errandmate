@@ -5,7 +5,7 @@ import 'package:errandmate/app/network/dio/dio.client.dart';
 import '../../../../core/exception/exception.dart';
 import '../errands.dart';
 
-class GetErrandsService implements Errands{
+class GetErrandsService extends Errands{
 
   @override
   Future<Either<Failure, Response>> getAvailableErrands(String taskType) async {

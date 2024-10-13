@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 const TextTheme appTextTheme = TextTheme(
   labelSmall: TextStyle(
     fontSize: 10,

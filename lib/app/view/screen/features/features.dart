@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../viewmodel/provider/featuresviewcontroller/bottom.nav.control.dart';
+import '../../helper/router.dart';
 import 'components/bottom.nav.item.box.dart';
 import 'helper/bottom.nav.element.dart';
 
@@ -12,11 +13,17 @@ class Features extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _FeaturesState();
 }
 
-class _FeaturesState extends ConsumerState<Features> {
+class _FeaturesState extends ConsumerState<Features> with ViewRouter{
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          goto('/features/create-task');
+        },
+        child: const Icon(Icons.add)
+      ),
       bottomNavigationBar: IntrinsicHeight(
         child: Container(
           padding: const EdgeInsets.only(bottom: 10),

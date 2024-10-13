@@ -2,6 +2,7 @@ import 'package:errandmate/app/view/screen/onboard/onboard.dart';
 import 'package:go_router/go_router.dart';
 
 import '../view/screen/authentication/login.dart';
+import '../view/screen/features/create.errand.task.dart';
 import '../view/screen/features/features.dart';
 import '../view/screen/features/profile.view.dart';
 import '../view/screen/splash.dart';
@@ -45,8 +46,11 @@ final GoRouter routes = GoRouter(
         GoRoute(
           path: 'profile/edit',
           builder: (context, state) => const ProfileView(),
+        ),
+        GoRoute(
+          path: 'create-task',
+          builder: (context, state) => const CreateErrandTask(),
         )
-        
       ]
     ),
     

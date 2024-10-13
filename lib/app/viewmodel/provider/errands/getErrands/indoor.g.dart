@@ -6,7 +6,7 @@ part of 'indoor.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getIndoorNotifierHash() => r'f435b986703295472f8af3827e55ea922b09e7a7';
+String _$getIndoorNotifierHash() => r'34ea9dcf966c4028ef7a1eb93d7741b8e9e375e5';
 
 /// See also [GetIndoorNotifier].
 @ProviderFor(GetIndoorNotifier)

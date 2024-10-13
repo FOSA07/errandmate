@@ -6,6 +6,7 @@ class FeaturesRoutes {
     GoRoute(
       path: 'home',
       name: 'home'
-    )
+    ),
+    
   ];
 }

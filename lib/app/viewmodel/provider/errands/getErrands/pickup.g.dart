@@ -6,7 +6,7 @@ part of 'pickup.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getPickupNotifierHash() => r'd99cc871ed5fa91e0aec6205383a59eda5f8cd9d';
+String _$getPickupNotifierHash() => r'9f8c46655ba158d80a865a3359be4d0d8bea120a';
 
 /// See also [GetPickupNotifier].
 @ProviderFor(GetPickupNotifier)

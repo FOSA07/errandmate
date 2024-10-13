@@ -51,8 +51,8 @@ class _IndoorErrandsState extends ConsumerState<IndoorErrands> {
               ),
             ) : TextButton(
               onPressed: () => ref.invalidate(getIndoorNotifierProvider),
-              style: const ButtonStyle(backgroundColor: 
-                WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
+              // style: const ButtonStyle(backgroundColor: 
+              //   WidgetStatePropertyAll(Color.fromARGB(255, 208, 230, 249))),
               child: const Text("reload"),  
             )),
         error: (error, stackTrace) => Center(child: getIndoorErrands.isLoading ?

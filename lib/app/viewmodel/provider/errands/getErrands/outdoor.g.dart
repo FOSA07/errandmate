@@ -7,7 +7,7 @@ part of 'outdoor.dart';
 // **************************************************************************
 
 String _$getOutdoorNotifierHash() =>
-    r'a22f5cc6dbc3ab7d9e5419dba40a1aaf538c2593';
+    r'0c083da754230aed70332a1b8efe9a7c1da1f7cd';
 
 /// See also [GetOutdoorNotifier].
 @ProviderFor(GetOutdoorNotifier)
