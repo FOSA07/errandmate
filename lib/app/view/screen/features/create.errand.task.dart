@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../viewmodel/provider/errands/create.errand.task.dart';
+import '../../../viewmodel/provider/errands/form/create.pickup.form.dart';
+import '../../widget/action.button.dart';
+import '../../widget/dropdown.dart';
+import 'errands/create/pickup.dart';
+
 class CreateErrandTask extends ConsumerStatefulWidget {
   const CreateErrandTask({super.key});
 
@@ -9,6 +15,8 @@ class CreateErrandTask extends ConsumerStatefulWidget {
 }
 
 class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
+
+  ValueNotifier<String> current = ValueNotifier<String>("");
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,7 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
           child: Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 10.0, bottom: 18.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -27,7 +36,54 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
                       'Create Task',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
-                ],)
+                ],),
+                const SizedBox(height: 20,),
+                const Text(
+                  'Select Errand Type'
+                ),
+                const SizedBox(height: 10,),
+                DropDownField(
+                  labelText: "",
+                  hintText: "Errand Type",
+                  dropDownValueModel: const [],
+                  dropDownValues: const ["Pick up", "Laundry", "Outdoor", "Indoor"],
+                  onChanged: (p0) => 
+                    current.value = p0.runtimeType == String ? "" : p0.name.toString(),
+                  // onChanged: (p0) => print(p0.runtimeType)
+
+                  // onChanged: (p0) => accountForm
+                  //     .updateGender(p0.name.toString().trim()),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: ValueListenableBuilder(
+                      valueListenable: current,
+                      builder: (context, value, child) {
+                        return current.value == "Pick up" ? 
+                          CreatePickup() : const Text("No Errand Type Selected");
+                      },
+                    ),
+                  ),
+                ),
+                Consumer(
+                  builder: (context, ref, child) => AppActionButton(
+                    text: 'Create',
+                    onPressed: () {
+                      if(current.value == "Pick up"){
+                        final form = ref.watch(createPickupFormNotifierProvider.notifier);
+                        if(form.formKey.currentState!.validate()){
+                          Map<String, dynamic> map = ref.read(createPickupFormNotifierProvider);
+                          print(map);
+
+                          ref.read(createErrandTaskNotifierProvider.notifier)
+                            .createTask("pickup", map);
+                        }
+                      }
+                    },
+                    isLoading: ref.watch(createErrandTaskNotifierProvider).isLoading,
+                    
+                  ),
+                )
               ],
             ),
           ),

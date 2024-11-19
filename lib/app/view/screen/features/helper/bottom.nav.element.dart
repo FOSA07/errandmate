@@ -4,12 +4,13 @@ import '../../../../utils/constant/app.images/app.images.dart';
 import '../errands/errand.dart';
 import '../home.dart';
 import '../profile.dart';
+import '../wallet.dart';
 
 enum NavElement {
 
   home(icon: AppImages.home, name: "Home", widget: Home()),
   errands(icon: AppImages.group, name: "Errands", widget: ErrandsPage()),
-  messaage(icon: AppImages.message, name: "Settings", widget: SizedBox()),
+  messaage(icon: AppImages.message, name: "Wallet", widget: Wallet()),
   profile(icon: AppImages.profile, name: "Profile", widget: Profile());
 
   final String icon;

@@ -14,6 +14,8 @@ import '../../data/service/institution/imp/institutions.dart';
 import '../../data/service/institution/institution.dart';
 import '../../data/service/user/imp/profile.dart';
 import '../../data/service/user/user.dart';
+import '../../data/service/wallet/imp/deposit.dart';
+import '../../data/service/wallet/wallet.dart';
 import '../../route/route.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -68,6 +70,11 @@ void setUpLocator(){
   locator.registerLazySingleton<Errands>(
     () => CreateErrandTaskService(),
     instanceName: "CreateErrandTaskService"
+  );
+
+  locator.registerLazySingleton<Wallet>(
+    () => DepositService(),
+    instanceName: "DepositService"
   );
 
 }
