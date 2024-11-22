@@ -11,6 +11,7 @@ class GetLaundryNotifier extends _$GetLaundryNotifier with GlobalSnackBar{
   Future getLaundryErrands() async{
 
     final result = await ErrandsController().getErrands("laundry");
+    print(result);
 
     return result.fold(
       (failure) {

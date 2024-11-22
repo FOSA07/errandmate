@@ -48,7 +48,7 @@ class DepositService extends Wallet {
     try{
       final Flutterwave flutterwave = Flutterwave(
         context: locator<GoRouter>().routerDelegate.navigatorKey.currentContext!,
-        publicKey: "pk_test_18a78ff05033d89af0f20177f7997fe55f988b15", 
+        publicKey: "18a78ff05033d89af0f20177f7997fe55f988b15", 
         txRef: id, 
         amount: amount, 
         customer: Customer(
@@ -75,7 +75,7 @@ class DepositService extends Wallet {
         return Right(response);
       } else {
         // Payment failed
-        print("Payment failed!");
+        print("Payment failed!\n\n\n$response");
         return Left(Failure("Payment failed!"));
       }
     } catch (e) {

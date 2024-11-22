@@ -22,9 +22,9 @@ class CreatePickupFormNotifier extends _$CreatePickupFormNotifier {
         "package_location": _packageLocation.text,
         "package_destination": _packageDestination.text,
         "package_description": _packageDescription.text,
-        "distance" : int.parse(_distance.text),
+        "distance" : int.parse(distanceCotroller.text),
         "transport_mode": int.parse(transportModeCotroller.text),
-        "receiver_contact": "+234${_receiverContact.text}"
+        "receiver_contact": "+234${receiverContactCotroller.text}"
     };
   }
 

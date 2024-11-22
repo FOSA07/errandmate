@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../viewmodel/provider/errands/create.errand.task.dart';
+import '../../../viewmodel/provider/errands/form/create.outdoor.dart';
 import '../../../viewmodel/provider/errands/form/create.pickup.form.dart';
 import '../../widget/action.button.dart';
 import '../../widget/dropdown.dart';
+import 'errands/create/outdoor.dart';
 import 'errands/create/pickup.dart';
 
 class CreateErrandTask extends ConsumerStatefulWidget {
@@ -60,7 +62,7 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
                       valueListenable: current,
                       builder: (context, value, child) {
                         return current.value == "Pick up" ? 
-                          CreatePickup() : const Text("No Errand Type Selected");
+                          CreatePickup() : current.value == "Outdoor" ? const CreateOutdoor() : const Text("No Errand Type Selected");
                       },
                     ),
                   ),
@@ -72,11 +74,22 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
                       if(current.value == "Pick up"){
                         final form = ref.watch(createPickupFormNotifierProvider.notifier);
                         if(form.formKey.currentState!.validate()){
+                          // print(ref.read(createPickupFormNotifierProvider));
                           Map<String, dynamic> map = ref.read(createPickupFormNotifierProvider);
                           print(map);
 
                           ref.read(createErrandTaskNotifierProvider.notifier)
                             .createTask("pickup", map);
+                        }
+                      } else if(current.value == "Outdoor"){
+                        final form = ref.watch(createOutdoorFormNotifierProvider.notifier);
+                        if(form.formKey.currentState!.validate()){
+                          // print(ref.read(createPickupFormNotifierProvider));
+                          Map<String, dynamic> map = ref.read(createOutdoorFormNotifierProvider);
+                          print(map);
+
+                          ref.read(createErrandTaskNotifierProvider.notifier)
+                            .createTask("outdoor", map);
                         }
                       }
                     },

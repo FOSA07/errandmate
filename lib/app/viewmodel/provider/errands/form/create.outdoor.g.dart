@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'laundry.dart';
+part of 'create.outdoor.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getLaundryNotifierHash() =>
-    r'2aa7a5fb5229ccf6f16c8585ae9b06d4d6863c8b';
+String _$createOutdoorFormNotifierHash() =>
+    r'f46f15adfea15acdb804e1eab541d52c7d85fc34';
 
-/// See also [GetLaundryNotifier].
-@ProviderFor(GetLaundryNotifier)
-final getLaundryNotifierProvider =
-    AsyncNotifierProvider<GetLaundryNotifier, Object?>.internal(
-  GetLaundryNotifier.new,
-  name: r'getLaundryNotifierProvider',
+/// See also [CreateOutdoorFormNotifier].
+@ProviderFor(CreateOutdoorFormNotifier)
+final createOutdoorFormNotifierProvider =
+    NotifierProvider<CreateOutdoorFormNotifier, Map<String, dynamic>>.internal(
+  CreateOutdoorFormNotifier.new,
+  name: r'createOutdoorFormNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$getLaundryNotifierHash,
+      : _$createOutdoorFormNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$GetLaundryNotifier = AsyncNotifier<Object?>;
+typedef _$CreateOutdoorFormNotifier = Notifier<Map<String, dynamic>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
