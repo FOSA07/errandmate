@@ -39,7 +39,6 @@ class DepositNotifier extends _$DepositNotifier with GlobalDialog{
             (chargeResponse) async {
               if (chargeResponse.success!) {
                 // Payment successful
-                print("Payment successful! Transaction ref: ${chargeResponse.txRef}");
                 final validate = await DepositController().validatePayment(chargeResponse.txRef!);
 
                 state = AsyncValue.data(validate);
@@ -59,8 +58,7 @@ class DepositNotifier extends _$DepositNotifier with GlobalDialog{
                 
               } else {
                 // Payment failed
-                print("Payment failed!");
-                state = AsyncValue.data("Payment failure");
+                state = const AsyncValue.data("Payment failure");
                 showAlertDialog(
                   message: "Payment failed!",
                 );

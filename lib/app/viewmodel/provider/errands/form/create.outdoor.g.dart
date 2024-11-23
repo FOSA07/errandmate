@@ -7,7 +7,7 @@ part of 'create.outdoor.dart';
 // **************************************************************************
 
 String _$createOutdoorFormNotifierHash() =>
-    r'f46f15adfea15acdb804e1eab541d52c7d85fc34';
+    r'4940224cda6127fbcf41be76397fc3e2e9de589b';
 
 /// See also [CreateOutdoorFormNotifier].
 @ProviderFor(CreateOutdoorFormNotifier)

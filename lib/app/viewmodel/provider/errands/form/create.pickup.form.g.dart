@@ -7,7 +7,7 @@ part of 'create.pickup.form.dart';
 // **************************************************************************
 
 String _$createPickupFormNotifierHash() =>
-    r'87ce2d701fa654c1be42dde7737b69ad397bff4f';
+    r'02735cb829937ba6a69ffd126b44504588614583';
 
 /// See also [CreatePickupFormNotifier].
 @ProviderFor(CreatePickupFormNotifier)

@@ -15,6 +15,7 @@ class AppTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final int? maxLength;
   final bool enabled;
+  final bool readOnly;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
 
@@ -32,6 +33,7 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength,
     this.enabled = true,
+    this.readOnly = false,
     this.textInputAction,
     this.focusNode,
   });
@@ -48,6 +50,7 @@ class AppTextFormField extends StatelessWidget {
       enabled: enabled,
       textInputAction: textInputAction,
       focusNode: focusNode,
+      readOnly: readOnly,
       onTapOutside: (e) {
         FocusManager.instance.primaryFocus!.unfocus();
       },

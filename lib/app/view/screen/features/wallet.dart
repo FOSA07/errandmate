@@ -1,6 +1,6 @@
+import 'package:errandmate/app/view/screen/features/components/custom.keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterwave_standard_smart/flutterwave.dart';
 
 import '../../../utils/constant/app.colors/app.colors.dart';
 import '../../../viewmodel/provider/wallet/deposit.dart';
@@ -35,10 +35,10 @@ class Wallet extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Total Balance"),
+                    const Text("Total Balance"),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      child: Icon(Icons.visibility_off, size: 15,)
+                      child: const Icon(Icons.visibility_off, size: 15,)
                     )
                   ]
                 ),
@@ -55,8 +55,11 @@ class Wallet extends ConsumerWidget {
                   children: [
                     GestureDetector(
                       onTap: (){
+                        // showCustomBottomSheet(context);
                         showModalBottomSheet(
                           context: context, 
+
+                          isScrollControlled: true,
                             builder: (context) => SizedBox(
                               width: MediaQuery.of(context).size.width,
                               child: IntrinsicHeight(
@@ -71,9 +74,12 @@ class Wallet extends ConsumerWidget {
                                           controller: amountController,
                                           labelText: 'Amount(₦)',
                                           keyboardType: TextInputType.number,
+                                          readOnly: true,
                                           validator: (p0) => p0 != null && p0.isEmpty ? "Field cannot be empty" : null,
                                         ),
                                       ),
+                                      const SizedBox(height: 20),
+                                      CustomKeyboardExample(controller: amountController),
                                       const SizedBox(height: 20),
                                       Consumer(
                                         builder: (context, ref, child) => AppActionButton(
@@ -99,32 +105,32 @@ class Wallet extends ConsumerWidget {
                       child: Column(
                         children: [
                           CircleAvatar(
-                            child: Icon(Icons.add, color: Colors.white,),
                             backgroundColor: AppColors.blue1,
+                            child: const Icon(Icons.add, color: Colors.white,),
                           ),
                           const SizedBox(height: 5,),
-                          Text("Deposit")
+                          const Text("Deposit")
                         ],
                       ),
                     ),
                     Column(
                       children: [
                         CircleAvatar(
-                          child: Icon(Icons.money_off, color: Colors.white,),
                           backgroundColor: AppColors.blue1,
+                          child: const Icon(Icons.money_off, color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
-                        Text("Withdraw")
+                        const Text("Withdraw")
                       ],
                     ),
                     Column(
                       children: [
                         CircleAvatar(
-                          child: Icon(Icons.support_agent, color: Colors.white,),
                           backgroundColor: AppColors.blue1,
+                          child: const Icon(Icons.support_agent, color: Colors.white,),
                         ),
                         const SizedBox(height: 5,),
-                        Text("Support")
+                        const Text("Support")
                       ],
                     )
                   ]
@@ -137,4 +143,63 @@ class Wallet extends ConsumerWidget {
       )
     );
   }
+
+  void showCustomBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Critical for accommodating keyboard
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.4, // Start height (40% of the screen)
+          minChildSize: 0.3, // Minimum height
+          maxChildSize: 0.9, // Maximum height (adjust as needed)
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom, // Adjust for keyboard
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Enter Details",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Name",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Email",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle form submission
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Submit"),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
 }

@@ -48,21 +48,21 @@ class DepositService extends Wallet {
     try{
       final Flutterwave flutterwave = Flutterwave(
         context: locator<GoRouter>().routerDelegate.navigatorKey.currentContext!,
-        publicKey: "18a78ff05033d89af0f20177f7997fe55f988b15", 
+        publicKey: "FLWPUBK_TEST-a0d57e5ac717e5498f3cf0955db62a8a-X",
         txRef: id, 
         amount: amount, 
         customer: Customer(
-          email: "",
-          name: "",
+          email: "faletioluwaseyisam@gmail.com",
+          name: "John",
           phoneNumber: ""
         ), 
         paymentOptions: "card, payattitude, barter, bank transfer, ussd", 
         customization: Customization(
-          title: "",
+          title: "Errandmate",
           description: "",
           logo: ""
         ), 
-        redirectUrl: "", 
+        redirectUrl: "facebook.com", 
         isTestMode: true, 
         currency: "NGN"
       );
@@ -71,11 +71,9 @@ class DepositService extends Wallet {
 
       if (response.success!) {
         // Payment successful
-        print("Payment successful! Transaction ref: ${response.txRef}");
         return Right(response);
       } else {
         // Payment failed
-        print("Payment failed!\n\n\n$response");
         return Left(Failure("Payment failed!"));
       }
     } catch (e) {

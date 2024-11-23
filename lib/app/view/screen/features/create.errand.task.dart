@@ -75,8 +75,14 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
                         final form = ref.watch(createPickupFormNotifierProvider.notifier);
                         if(form.formKey.currentState!.validate()){
                           // print(ref.read(createPickupFormNotifierProvider));
-                          Map<String, dynamic> map = ref.read(createPickupFormNotifierProvider);
-                          print(map);
+                          Map<String, dynamic> map = {
+                              "package_location": ref.read(createPickupFormNotifierProvider.notifier).packageLocationCotroller.text,
+                              "package_destination": ref.read(createPickupFormNotifierProvider.notifier).packageDestinationCotroller.text,
+                              "package_description": ref.read(createPickupFormNotifierProvider.notifier).packageDescriptionCotroller.text,
+                              "distance" : ref.read(createPickupFormNotifierProvider.notifier).distanceCotroller.text,
+                              "transport_mode": ref.read(createPickupFormNotifierProvider.notifier).transportModeCotroller.text,
+                              "receiver_contact": "+234${ref.read(createPickupFormNotifierProvider.notifier).receiverContactCotroller.text}"
+                          };
 
                           ref.read(createErrandTaskNotifierProvider.notifier)
                             .createTask("pickup", map);
@@ -84,9 +90,15 @@ class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
                       } else if(current.value == "Outdoor"){
                         final form = ref.watch(createOutdoorFormNotifierProvider.notifier);
                         if(form.formKey.currentState!.validate()){
-                          // print(ref.read(createPickupFormNotifierProvider));
-                          Map<String, dynamic> map = ref.read(createOutdoorFormNotifierProvider);
-                          print(map);
+                          // print(ref.read(createOutdoorFormNotifierProvider.notifier).senderLocationCotroller.text);
+                          Map<String, dynamic> map = {
+                            "sender_location": ref.read(createOutdoorFormNotifierProvider.notifier).senderLocationCotroller.text,
+                            "location": ref.read(createOutdoorFormNotifierProvider.notifier).locationCotroller.text,
+                            "type": ref.read(createOutdoorFormNotifierProvider.notifier).typeCotroller.text,
+                            "description": ref.read(createOutdoorFormNotifierProvider.notifier).descriptionCotroller.text,
+                            "budget": ref.read(createOutdoorFormNotifierProvider.notifier).budgetCotroller.text
+                          };
+                          // Map<String, dynamic> map = ref.read(createOutdoorFormNotifierProvider);
 
                           ref.read(createErrandTaskNotifierProvider.notifier)
                             .createTask("outdoor", map);

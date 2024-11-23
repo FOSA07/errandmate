@@ -16,12 +16,13 @@ class CreateOutdoorFormNotifier extends _$CreateOutdoorFormNotifier {
 
   @override
   Map<String, dynamic> build () {
+    double? figure = double.tryParse(budgetCotroller.text.toString());
     return {
       "sender_location": senderLocationCotroller.text,
       "location": locationCotroller.text,
       "type": typeCotroller.text,
       "description": descriptionCotroller.text,
-      "budget": double.parse(budgetCotroller.text)
+      "budget": figure
     };
   }
 

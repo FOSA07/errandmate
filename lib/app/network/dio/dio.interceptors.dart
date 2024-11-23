@@ -36,7 +36,6 @@ class DioInterceptors extends Interceptor {
     if (response.requestOptions.path == '/auth/login' && response.statusCode == 200 && response.data["code"] == "00") {
       final token = UserModel.fromJson(response.data["data"]);
       if (token.token != null) {
-        print(token.token!.split('|').last);
         final tokenResult = await _userStorageController.storeToken(token.token!.split('|').last);
 
         tokenResult.fold(
