@@ -8,11 +8,12 @@ import '../../utils/serviceLocator/service.locator.dart';
 mixin GlobalDialog {
   final _routes = locator<GoRouter>();
 
-  void showAlertDialog(
-      {String message = "Oops! an error occured",
-      bool success = false,
-      Function()? onClose,
-      String? buttonText,}) {
+  void showAlertDialog({
+    String message = "Oops! an error occured",
+    bool success = false,
+    Function()? onClose,
+    String? buttonText,
+  }) {
     showDialog(
       context: _routes.routerDelegate.navigatorKey.currentContext!,
       barrierDismissible: false,
@@ -64,7 +65,8 @@ mixin GlobalDialog {
                         ),
                         Text(
                           message.replaceRange(0, 1, message[0].toUpperCase()),
-                        )
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                     const SizedBox(

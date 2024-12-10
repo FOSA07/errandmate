@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bottom.nav.control.dart';
+part of 'transport.mode.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$bottomNavIndexNotifierHash() =>
-    r'be306cb27ffda709a1f3ad659ee832f9398728b2';
+String _$transportModeNotifierHash() =>
+    r'7e52b9c8bb6e0b712747a04411160cb3080d149c';
 
-/// See also [BottomNavIndexNotifier].
-@ProviderFor(BottomNavIndexNotifier)
-final bottomNavIndexNotifierProvider =
-    NotifierProvider<BottomNavIndexNotifier, int>.internal(
-  BottomNavIndexNotifier.new,
-  name: r'bottomNavIndexNotifierProvider',
+/// See also [TransportModeNotifier].
+@ProviderFor(TransportModeNotifier)
+final transportModeNotifierProvider =
+    AsyncNotifierProvider<TransportModeNotifier, AsyncValue>.internal(
+  TransportModeNotifier.new,
+  name: r'transportModeNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$bottomNavIndexNotifierHash,
+      : _$transportModeNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$BottomNavIndexNotifier = Notifier<int>;
+typedef _$TransportModeNotifier = AsyncNotifier<AsyncValue>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

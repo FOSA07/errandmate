@@ -13,107 +13,149 @@ class CreateErrandTask extends ConsumerStatefulWidget {
   const CreateErrandTask({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CreateErrandTaskState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CreateErrandTaskState();
 }
 
 class _CreateErrandTaskState extends ConsumerState<CreateErrandTask> {
-
   ValueNotifier<String> current = ValueNotifier<String>("");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 10.0, bottom: 18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Create Task',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                ],),
-                const SizedBox(height: 20,),
-                const Text(
-                  'Select Errand Type'
-                ),
-                const SizedBox(height: 10,),
-                DropDownField(
-                  labelText: "",
-                  hintText: "Errand Type",
-                  dropDownValueModel: const [],
-                  dropDownValues: const ["Pick up", "Laundry", "Outdoor", "Indoor"],
-                  onChanged: (p0) => 
-                    current.value = p0.runtimeType == String ? "" : p0.name.toString(),
-                  // onChanged: (p0) => print(p0.runtimeType)
-
-                  // onChanged: (p0) => accountForm
-                  //     .updateGender(p0.name.toString().trim()),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: ValueListenableBuilder(
-                      valueListenable: current,
-                      builder: (context, value, child) {
-                        return current.value == "Pick up" ? 
-                          CreatePickup() : current.value == "Outdoor" ? const CreateOutdoor() : const Text("No Errand Type Selected");
-                      },
-                    ),
+          child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.only(
+              left: 18.0, right: 18.0, top: 10.0, bottom: 18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Create Task',
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
-                ),
-                Consumer(
-                  builder: (context, ref, child) => AppActionButton(
-                    text: 'Create',
-                    onPressed: () {
-                      if(current.value == "Pick up"){
-                        final form = ref.watch(createPickupFormNotifierProvider.notifier);
-                        if(form.formKey.currentState!.validate()){
-                          // print(ref.read(createPickupFormNotifierProvider));
-                          Map<String, dynamic> map = {
-                              "package_location": ref.read(createPickupFormNotifierProvider.notifier).packageLocationCotroller.text,
-                              "package_destination": ref.read(createPickupFormNotifierProvider.notifier).packageDestinationCotroller.text,
-                              "package_description": ref.read(createPickupFormNotifierProvider.notifier).packageDescriptionCotroller.text,
-                              "distance" : ref.read(createPickupFormNotifierProvider.notifier).distanceCotroller.text,
-                              "transport_mode": ref.read(createPickupFormNotifierProvider.notifier).transportModeCotroller.text,
-                              "receiver_contact": "+234${ref.read(createPickupFormNotifierProvider.notifier).receiverContactCotroller.text}"
-                          };
-
-                          ref.read(createErrandTaskNotifierProvider.notifier)
-                            .createTask("pickup", map);
-                        }
-                      } else if(current.value == "Outdoor"){
-                        final form = ref.watch(createOutdoorFormNotifierProvider.notifier);
-                        if(form.formKey.currentState!.validate()){
-                          // print(ref.read(createOutdoorFormNotifierProvider.notifier).senderLocationCotroller.text);
-                          Map<String, dynamic> map = {
-                            "sender_location": ref.read(createOutdoorFormNotifierProvider.notifier).senderLocationCotroller.text,
-                            "location": ref.read(createOutdoorFormNotifierProvider.notifier).locationCotroller.text,
-                            "type": ref.read(createOutdoorFormNotifierProvider.notifier).typeCotroller.text,
-                            "description": ref.read(createOutdoorFormNotifierProvider.notifier).descriptionCotroller.text,
-                            "budget": ref.read(createOutdoorFormNotifierProvider.notifier).budgetCotroller.text
-                          };
-                          // Map<String, dynamic> map = ref.read(createOutdoorFormNotifierProvider);
-
-                          ref.read(createErrandTaskNotifierProvider.notifier)
-                            .createTask("outdoor", map);
-                        }
-                      }
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text('Select Errand Type'),
+              const SizedBox(
+                height: 10,
+              ),
+              DropDownField(
+                labelText: "",
+                hintText: "Errand Type",
+                dropDownValueModel: const [],
+                dropDownValues: const [
+                  "Pick up",
+                  "Laundry",
+                  "Outdoor",
+                  "Indoor"
+                ],
+                onChanged: (p0) => current.value =
+                    p0.runtimeType == String ? "" : p0.name.toString(),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: ValueListenableBuilder(
+                    valueListenable: current,
+                    builder: (context, value, child) {
+                      return current.value == "Pick up"
+                          ? CreatePickup()
+                          : current.value == "Outdoor"
+                              ? const CreateOutdoor()
+                              : const Text("No Errand Type Selected");
                     },
-                    isLoading: ref.watch(createErrandTaskNotifierProvider).isLoading,
-                    
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Consumer(
+                builder: (context, ref, child) => AppActionButton(
+                  text: 'Create',
+                  onPressed: () {
+                    if (current.value == "Pick up") {
+                      final form =
+                          ref.watch(createPickupFormNotifierProvider.notifier);
+                      if (form.formKey.currentState!.validate()) {
+                        // print(ref.read(createPickupFormNotifierProvider));
+                        Map<String, dynamic> map = {
+                          "package_location": ref
+                              .read(createPickupFormNotifierProvider.notifier)
+                              .packageLocationCotroller
+                              .text,
+                          "package_destination": ref
+                              .read(createPickupFormNotifierProvider.notifier)
+                              .packageDestinationCotroller
+                              .text,
+                          "package_description": ref
+                              .read(createPickupFormNotifierProvider.notifier)
+                              .packageDescriptionCotroller
+                              .text,
+                          "distance": ref
+                              .read(createPickupFormNotifierProvider.notifier)
+                              .distanceCotroller
+                              .text,
+                          "transport_mode": ref
+                              .read(createPickupFormNotifierProvider.notifier)
+                              .transportModeCotroller
+                              .text,
+                          "receiver_contact":
+                              "+234${ref.read(createPickupFormNotifierProvider.notifier).receiverContactCotroller.text}"
+                        };
+
+                        ref
+                            .read(createErrandTaskNotifierProvider.notifier)
+                            .createTask("pickup", map);
+                      }
+                    } else if (current.value == "Outdoor") {
+                      final form =
+                          ref.watch(createOutdoorFormNotifierProvider.notifier);
+                      if (form.formKey.currentState!.validate()) {
+                        // print(ref.read(createOutdoorFormNotifierProvider.notifier).senderLocationCotroller.text);
+                        Map<String, dynamic> map = {
+                          "sender_location": ref
+                              .read(createOutdoorFormNotifierProvider.notifier)
+                              .senderLocationCotroller
+                              .text,
+                          "location": ref
+                              .read(createOutdoorFormNotifierProvider.notifier)
+                              .locationCotroller
+                              .text,
+                          "type": ref
+                              .read(createOutdoorFormNotifierProvider.notifier)
+                              .typeCotroller
+                              .text,
+                          "description": ref
+                              .read(createOutdoorFormNotifierProvider.notifier)
+                              .descriptionCotroller
+                              .text,
+                          "budget": ref
+                              .read(createOutdoorFormNotifierProvider.notifier)
+                              .budgetCotroller
+                              .text
+                        };
+                        // Map<String, dynamic> map = ref.read(createOutdoorFormNotifierProvider);
+
+                        ref
+                            .read(createErrandTaskNotifierProvider.notifier)
+                            .createTask("outdoor", map);
+                      }
+                    }
+                  },
+                  isLoading:
+                      ref.watch(createErrandTaskNotifierProvider).isLoading,
+                ),
+              )
+            ],
           ),
-        )
-      ),
+        ),
+      )),
     );
   }
 }

@@ -1,3 +1,6 @@
+import 'package:errandmate/app/data/service/transport/imp/transport.impl.dart';
+import 'package:errandmate/app/data/service/transport/transport.dart';
+
 import '../../data/repository/user.storage.dart';
 import '../../data/service/authentication/authentication.dart';
 import '../../data/service/authentication/imp/create.account.dart';
@@ -75,6 +78,11 @@ void setUpLocator(){
   locator.registerLazySingleton<Wallet>(
     () => DepositService(),
     instanceName: "DepositService"
+  );
+
+  locator.registerLazySingleton<TransaportMode>(
+    () => TransaportModesImpl(),
+    instanceName: "TransaportModesImpl"
   );
 
 }

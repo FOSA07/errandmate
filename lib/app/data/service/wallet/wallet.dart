@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:errandmate/app/model/user/profile.dart';
+import 'package:errandmate/app/model/user/user.dart';
 import 'package:flutterwave_standard_smart/flutterwave.dart';
 
 import '../../../core/exception/exception.dart';
@@ -17,7 +19,8 @@ abstract class Wallet {
   Future<Either<Failure, ChargeResponse>> makePayment(
   {
     required String amount,
-    required String id
+    required String id,
+    required UserProfileModel userData,
   }
   ) => throw UnimplementedError();
   

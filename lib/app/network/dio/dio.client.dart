@@ -18,10 +18,11 @@ class DioClient {
     _dio.interceptors.add(DioInterceptors(_userstorageController));
   }
 
-  Future<Either<Failure, Response>> get(String path,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<Either<Failure, Response>> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      
       final result = await _dio.get(path, queryParameters: queryParameters);
       result.data["code"] ??= "99";
       if (result.statusCode == 200 && result.data["code"] == "00") {
@@ -43,7 +44,6 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-
       final result =
           await _dio.post(path, data: data, queryParameters: queryParameters);
       // log('result = $result');
